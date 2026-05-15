@@ -1,0 +1,106 @@
+command_id: CMD-20260510-028-runtime-flow-guard-snapshot
+type: create_issue
+mode: approved
+approval: APPROVED_CREATE_ISSUE
+approved_by: 用户
+workspace: default
+title: "P0：建立 Runtime 流程保障总账（只读观测版）"
+assignee: Runtime首脑
+priority: high
+status: todo
+body: |
+  目标：
+  建立 Runtime 流程保障总账，让用户和 ChatGPT 能快速判断：
+  1. 当前流程是否通；
+  2. 卡在哪个环节；
+  3. 责任角色是谁；
+  4. 是否需要人工决策。
+
+  本任务只做流程保障和只读观测，不做业务执行。
+
+  需要新增文件：
+  - scripts/runtime_state_snapshot.ps1
+  - tasks/status/runtime-state.json
+  - tasks/status/runtime-state.md
+  - 20-resources/runtime-flow-guard-business-rules.md
+
+  严格禁止：
+  - 不关闭、评论、更新 Multica Issue 状态；
+  - 不运行 runtime-commands/process_runtime_command.py；
+  - 不修改生产数据库、PolarDB、DolphinScheduler、DataX；
+  - 不执行 INSERT/UPDATE/DELETE/DROP/ALTER/TRUNCATE/CREATE；
+  - 不重跑调度；
+  - 不删除文件；
+  - 不 force push；
+  - 不读取或输出 API key、token、密码、连接串；
+  - Runtime首脑不得补业务报告、补证据、写 SQL、写业务产物。
+
+  允许动作：
+  - 读取 Git 仓库文件；
+  - 读取 gateway 日志；
+  - 只读执行 multica issue list / agent list；
+  - 读取 runtime-commands/done 和 failed；
+  - 读取 heartbeat / review_loop_status；
+  - 新增上述 4 个流程保障文件；
+  - git add/commit/push 本任务新增文件。
+
+  runtime-state.json 必须包含：
+  - generated_at
+  - mode: flow_guard_readonly
+  - overall_status: green | yellow | red | black
+  - gateway.alive
+  - gateway.last_seen
+  - gateway.failed_count
+  - gateway.last_created_issue
+  - multica.todo
+  - multica.in_progress
+  - multica.in_review
+  - multica.blocked
+  - multica.done_recent
+  - flow_health.intake_ok
+  - flow_health.routing_ok
+  - flow_health.review_ok
+  - flow_health.closeout_ok
+  - flow_health.state_observability_ok
+  - blockers
+  - role_violations
+  - duplicates
+  - manual_decisions
+  - next_actions
+
+  判断规则：
+  - runtime-commands/failed 非空：overall_status 至少 red；
+  - gateway 日志超过 10 分钟无新记录：yellow；
+  - gateway 日志超过 30 分钟无新记录：red；
+  - in_review 超过 30 分钟：yellow；
+  - in_review 超过 60 分钟：red；
+  - 涉及生产写操作、密钥、权限、状态批量变更：black；
+  - heartbeat 与 Multica 实时状态冲突：state_observability_ok=false；
+  - tasks/active 不得作为真实 active 判断依据；
+  - pending 中已有 done JSON 的 command 不算待处理。
+
+  验收标准：
+  - powershell -ExecutionPolicy Bypass -File scripts/runtime_state_snapshot.ps1 可运行；
+  - tasks/status/runtime-state.json 已生成；
+  - tasks/status/runtime-state.md 已生成；
+  - git diff 只包含上述 4 个文件；
+  - runtime-commands/failed 没有新增失败；
+  - 没有 Multica Issue 被关闭、评论、改状态；
+  - 输出 Git commit id；
+  - 输出 runtime-state.md 摘要；
+  - 明确是否发现流程堵点；
+  - 明确是否需要用户人工决策。
+
+forbidden_actions:
+  - modify_production_db
+  - modify_dolphin
+  - modify_datax
+  - delete_files
+  - force_push
+  - expose_secrets
+acceptance:
+  - issue_created
+  - assigned_to_runtime_chief
+  - no_business_execution
+  - no_production_change
+  - runtime_state_files_generated_after_execution

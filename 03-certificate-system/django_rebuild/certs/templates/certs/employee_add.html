@@ -1,0 +1,16 @@
+{% extends "certs/base.html" %}
+{% block title %}新增员工{% endblock %}
+{% block content %}
+<div class="card">
+  <h3>新增员工</h3>
+  <form method="post" action="/employees">
+    {% csrf_token %}
+    <p><input name="name" placeholder="姓名"></p>
+    <p><input name="id_card" placeholder="身份证号"></p>
+    <p><input name="department" placeholder="部门"></p>
+    <p><input name="phone" placeholder="电话"></p>
+    <p><input name="position" placeholder="岗位"></p>
+    <p><button type="submit">保存</button></p>
+  </form>
+</div>
+{% endblock %}

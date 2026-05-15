@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}查询日志 - 证书管理系统{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <span>📋 查询日志 (最近100条)</span>
+    </div>
+    <div class="card-body">
+        {% if logs %}
+        <table>
+            <thead>
+                <tr>
+                    <th>查询时间</th>
+                    <th>姓名</th>
+                    <th>身份证号</th>
+                    <th>查询类型</th>
+                    <th>来源</th>
+                    <th>结果数量</th>
+                    <th>有新数据</th>
+                    <th>状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log.queried_at }}</td>
+                    <td>{{ log.name or '-' }}</td>
+                    <td>{{ log.id_card }}</td>
+                    <td>{{ log.query_type }}</td>
+                    <td>{{ log.query_source }}</td>
+                    <td>{{ log.result_count }} 条</td>
+                    <td>
+                        {% if log.has_new_data %}
+                        <span class="status status-valid">是</span>
+                        {% else %}
+                        <span style="color: #888;">否</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <span class="status {% if log.query_status == '成功' %}status-valid{% elif log.query_status == '无记录' %}status-warning{% else %}status-expired{% endif %}">
+                            {{ log.query_status }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <p>暂无查询日志</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

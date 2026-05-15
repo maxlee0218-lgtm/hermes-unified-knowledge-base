@@ -1,0 +1,25 @@
+{% extends "certs/base.html" %}
+{% block title %}新增证书{% endblock %}
+{% block content %}
+<div class="card">
+  <h3>新增证书</h3>
+  <form method="post" action="/certificates">
+    {% csrf_token %}
+    <p>
+      <select name="employee_id">
+        <option value="">选择员工</option>
+        {% for emp in employees %}
+          <option value="{{ emp.id }}">{{ emp.name }} / {{ emp.id_number }}</option>
+        {% endfor %}
+      </select>
+    </p>
+    <p><input name="certificate_type" placeholder="证书类型"></p>
+    <p><input name="operation_item" placeholder="作业项目"></p>
+    <p><input name="issuing_authority" placeholder="发证机关"></p>
+    <p><input name="issue_date" placeholder="发证日期 YYYY-MM-DD"></p>
+    <p><input name="expiry_date" placeholder="到期日期 YYYY-MM-DD"></p>
+    <p><input name="review_date" placeholder="复审日期 YYYY-MM-DD"></p>
+    <p><button type="submit">保存</button></p>
+  </form>
+</div>
+{% endblock %}

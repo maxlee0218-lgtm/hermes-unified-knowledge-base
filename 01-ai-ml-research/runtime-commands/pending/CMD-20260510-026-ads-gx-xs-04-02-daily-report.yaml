@@ -1,0 +1,52 @@
+command_id: CMD-20260510-026-ads-gx-xs-04-02-daily-report
+type: create_issue
+mode: approved
+approval: APPROVED_CREATE_ISSUE
+approved_by: Codex
+workspace: default
+title: 【数据分析】ads_gx_xs_04_02 今日报表分析
+assignee: Runtime首脑
+priority: high
+status: todo
+body: |
+  目标：请按真实任务走完整 Multica 角色流程，分析今日报表 ads_gx_xs_04_02，并生成分析报告。
+
+  日期口径：
+  - 今日按 2026-05-10 处理。
+  - 如表内日期字段不同，请先只读探测字段，再说明实际采用的日期字段和过滤条件。
+
+  Runtime首脑职责：
+  - 只做入口识别、分派、状态治理和按验收 verdict 收口，不写业务分析。
+  - 将任务分派给 数据开发专家。
+  - 数据开发专家完成后转 in_review，并触发 验收官/审计官 独立验收。
+  - 根据验收官 verdict 自动收口：ACCEPT -> done，BLOCKED -> blocked，REWORK -> 重派一次。
+  - 如果 runtime/auth/数据访问不可达，不要原地停留 in_review，必须转 blocked 并写明下一条命令或需要的用户决策。
+
+  数据开发专家职责：
+  - 只读查询，不修改任何生产数据。
+  - 只允许 SELECT、SHOW、DESCRIBE、EXPLAIN 等只读操作。
+  - 不打印连接串、密码、token、密钥。
+  - 输出脱敏分析报告。
+  - 报告应包含：数据日期、总量、关键指标、异常值、同比/环比若可得、空值/重复/极值、业务风险、下一步建议、SQL 摘要。
+  - 给出报告路径和证据摘要。
+
+  验收官/审计官职责：
+  - 不执行原任务，只做验收。
+  - 检查报告是否存在、是否脱敏、是否满足上述验收标准。
+  - 输出固定 verdict：ACCEPT / BLOCKED / REWORK。
+  - 不直接关闭业务 issue，由 Runtime首脑按 verdict 收口。
+
+  禁止：
+  - 不修改生产数据库、PolarDB、DolphinScheduler、DataX。
+  - 不执行 INSERT/UPDATE/DELETE/DROP/ALTER/TRUNCATE/CREATE。
+  - 不重跑调度。
+  - 不删除文件。
+  - 不 force push。
+  - 不打印密钥、token、连接串。
+forbidden_actions:
+  - modify_production_db
+  - modify_dolphin
+  - modify_datax
+  - delete_files
+  - force_push
+  - expose_secrets

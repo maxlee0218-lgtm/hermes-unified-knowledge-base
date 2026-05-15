@@ -1,0 +1,622 @@
+[
+  {
+    "id": 16,
+    "job_desc": "wms_warehouse（全量）",
+    "trigger_status": 1,
+    "job_cron": "05 1/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:15:54",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "wms_warehouse"
+    ],
+    "reader_where": null,
+    "reader_query_sql": null,
+    "reader_split_pk": "wh_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_wms_warehouse"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": [
+      "DELETE FROM ods_mes_wms_warehouse"
+    ],
+    "writer_post_sql": null
+  },
+  {
+    "id": 17,
+    "job_desc": "wms_batch_info（增量）",
+    "trigger_status": 1,
+    "job_cron": "33 1/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2026-04-23 17:41:59",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "wms_batch_info"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "batch_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_wms_batch_info"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 20,
+    "job_desc": "pm_sku（增量）",
+    "trigger_status": 1,
+    "job_cron": "05 1/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:15:23",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "pm_sku"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "sku_Id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_pm_sku"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 24,
+    "job_desc": "mm_task_prod_actual（增量）",
+    "trigger_status": 1,
+    "job_cron": "05 5/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2026-04-24 10:52:27",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_task_prod_actual"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "actual_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_task_prod_actual"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 25,
+    "job_desc": "mm_task_group_output（增量）",
+    "trigger_status": 1,
+    "job_cron": "05 5/10 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2026-04-24 13:39:18",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_task_group_output"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_task_group_output"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 27,
+    "job_desc": "mm_order_item_task（增量）",
+    "trigger_status": 1,
+    "job_cron": "05 5/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:14:38",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_order_item_task"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "task_inst_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_order_item_task"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 28,
+    "job_desc": "mm_order_item（增量）",
+    "trigger_status": 1,
+    "job_cron": "05 5/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:14:27",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_order_item"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "order_item_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_order_item"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 29,
+    "job_desc": "mm_machine（全量）",
+    "trigger_status": 1,
+    "job_cron": "05 05 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:14:12",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_machine"
+    ],
+    "reader_where": null,
+    "reader_query_sql": null,
+    "reader_split_pk": "machine_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_machine"
+    ],
+    "writer_write_mode": null,
+    "writer_pre_sql": [
+      "DELETE FROM ods_mes_mm_machine "
+    ],
+    "writer_post_sql": null
+  },
+  {
+    "id": 30,
+    "job_desc": "mm_workcenter（全量）",
+    "trigger_status": 1,
+    "job_cron": "05 05 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:14:10",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_workcenter"
+    ],
+    "reader_where": null,
+    "reader_query_sql": null,
+    "reader_split_pk": "workcenter_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_workcenter"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": [
+      "DELETE FROM ods_mes_mm_workcenter "
+    ],
+    "writer_post_sql": null
+  },
+  {
+    "id": 31,
+    "job_desc": "wms_wh_enter（增量）",
+    "trigger_status": 1,
+    "job_cron": "45 4/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:39:46",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "wms_wh_enter"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "enter_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_wms_wh_enter"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 32,
+    "job_desc": "wms_wh_enter_item（增量）",
+    "trigger_status": 1,
+    "job_cron": "45 4/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2026-04-24 10:52:59",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "wms_wh_enter_item"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "enter_item_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_wms_wh_enter_item"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 33,
+    "job_desc": "sys_supplier（全量）",
+    "trigger_status": 1,
+    "job_cron": "35 4/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:13:31",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "sys_supplier"
+    ],
+    "reader_where": null,
+    "reader_query_sql": null,
+    "reader_split_pk": "supplier_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_sys_supplier"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": [
+      "DELETE FROM ods_mes_sys_supplier "
+    ],
+    "writer_post_sql": null
+  },
+  {
+    "id": 34,
+    "job_desc": "sys_department（全量）",
+    "trigger_status": 1,
+    "job_cron": "35 4/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:13:20",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "sys_department"
+    ],
+    "reader_where": null,
+    "reader_query_sql": null,
+    "reader_split_pk": "dept_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_sys_department"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": [
+      "DELETE FROM ods_mes_sys_department "
+    ],
+    "writer_post_sql": null
+  },
+  {
+    "id": 35,
+    "job_desc": "mm_task_wh_enter（增量）",
+    "trigger_status": 1,
+    "job_cron": "25 4/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:13:07",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_task_wh_enter"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "pack_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_task_wh_enter"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 37,
+    "job_desc": "mm_qc_defect_data（增量）",
+    "trigger_status": 1,
+    "job_cron": "05 4/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:12:41",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_qc_defect_data"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "defect_data_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_qc_defect_data"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 38,
+    "job_desc": "mm_qc_actual_defect_rela（增量）",
+    "trigger_status": 1,
+    "job_cron": "55 3/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:12:27",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_qc_actual_defect_rela"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "rela_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_qc_actual_defect_rela"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 60,
+    "job_desc": "pu_purchase_arrival_item（增量）",
+    "trigger_status": 1,
+    "job_cron": "45 1/30 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-11-20 15:08:53",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "pu_purchase_arrival_item"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "po_arrival_item_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_pu_purchase_arrival_item"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 121,
+    "job_desc": "mm_machine_group（全量）",
+    "trigger_status": 1,
+    "job_cron": "02 01 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-12-31 11:15:37",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_machine_group"
+    ],
+    "reader_where": null,
+    "reader_query_sql": null,
+    "reader_split_pk": "group_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_machine_group"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": [
+      "delete from  ods_mes_mm_machine_group"
+    ],
+    "writer_post_sql": null
+  },
+  {
+    "id": 122,
+    "job_desc": "mm_machine_cost_record（增量）",
+    "trigger_status": 1,
+    "job_cron": "01 2/10 * * * ? *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2026-01-05 15:44:35",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_machine_cost_record"
+    ],
+    "reader_where": "modified_time >= $lastTime and modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "record_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_machine_cost_record"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 123,
+    "job_desc": "mm_machine_cost_item_rela（全量）",
+    "trigger_status": 1,
+    "job_cron": "02 01 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2025-12-31 11:54:18",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "mm_machine_cost_item_rela"
+    ],
+    "reader_where": null,
+    "reader_query_sql": null,
+    "reader_split_pk": "rela_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_mm_machine_cost_item_rela"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": [
+      "delete from  ods_mes_mm_machine_cost_item_rela "
+    ],
+    "writer_post_sql": null
+  },
+  {
+    "id": 139,
+    "job_desc": "sys_attr_value（增量）",
+    "trigger_status": 1,
+    "job_cron": "02 01 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2026-02-05 09:56:33",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/hmes_prd"
+    ],
+    "reader_tables": [
+      "sys_attr_value"
+    ],
+    "reader_where": "r_modified_time >= $lastTime and r_modified_time < $currentTime",
+    "reader_query_sql": null,
+    "reader_split_pk": "attr_value_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_mes_sys_attr_value"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": null,
+    "writer_post_sql": null
+  },
+  {
+    "id": 146,
+    "job_desc": "gm_wms_warehouse（全量）",
+    "trigger_status": 1,
+    "job_cron": "02 01 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2026-03-26 16:59:02",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/fair_prd?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai"
+    ],
+    "reader_tables": [
+      "wms_warehouse"
+    ],
+    "reader_where": null,
+    "reader_query_sql": null,
+    "reader_split_pk": "wh_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_fair_wms_warehouse"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": [
+      "delete from  ods_fair_wms_warehouse "
+    ],
+    "writer_post_sql": null
+  },
+  {
+    "id": 148,
+    "job_desc": "gm_sys_attr_value（全量）",
+    "trigger_status": 1,
+    "job_cron": "02 01 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2026-03-26 16:59:24",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/fair_prd?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai"
+    ],
+    "reader_tables": [
+      "sys_attr_value"
+    ],
+    "reader_where": null,
+    "reader_query_sql": null,
+    "reader_split_pk": "attr_value_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_fair_sys_attr_value"
+    ],
+    "writer_write_mode": "update",
+    "writer_pre_sql": [
+      "delete from  ods_fair_sys_attr_value "
+    ],
+    "writer_post_sql": null
+  },
+  {
+    "id": 176,
+    "job_desc": "fair_pm_sku(全量)",
+    "trigger_status": 1,
+    "job_cron": "02 01 * ? * * *",
+    "executor_route_strategy": "RANDOM",
+    "datasource_id": 0,
+    "update_time": "2026-04-13 18:58:12",
+    "reader_jdbc": [
+      "jdbc:mysql://pe-7xvv6jy262tytzmwa.rwlb.rds.aliyuncs.com:4518/fair_prd?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai"
+    ],
+    "reader_tables": [
+      "pm_sku"
+    ],
+    "reader_where": null,
+    "reader_query_sql": null,
+    "reader_split_pk": "sku_id",
+    "writer_jdbc": "jdbc:mysql://pe-7xvnlcl08npcgo8wv.rwlb.rds.aliyuncs.com:4018/da_dw",
+    "writer_tables": [
+      "ods_fair_pm_sku"
+    ],
+    "writer_write_mode": null,
+    "writer_pre_sql": [
+      "DELETE FROM ods_fair_pm_sku"
+    ],
+    "writer_post_sql": null
+  }
+]

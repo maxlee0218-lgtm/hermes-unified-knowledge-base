@@ -1,0 +1,37 @@
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path("", views.dashboard, name="dashboard"),
+    path("health/", views.health, name="health"),
+    path("api/dashboard/", views.dashboard_api, name="dashboard_api"),
+    path("api/notifications", views.api_notifications, name="api_notifications"),
+    path("api/notifications/read", views.api_notifications_read, name="api_notifications_read"),
+    path("employee/<int:employee_id>", views.employee_detail, name="employee_detail"),
+    path("expiring", views.expiring, name="expiring"),
+    path("logs", views.logs, name="logs"),
+    path("search", views.search, name="search"),
+    path("employees/add", views.employee_add_page, name="employee_add_page"),
+    path("certificates/add", views.certificate_add_page, name="certificate_add_page"),
+    path("api/employees", views.api_add_employee, name="api_add_employee"),
+    path("api/employees/list", views.api_employees_list, name="api_employees_list"),
+    path("api/employees/search", views.api_employees_search, name="api_employees_search"),
+    path("api/employees/<int:emp_id>", views.api_employee_detail, name="api_employee_detail"),
+    path("api/certificates", views.api_add_certificate, name="api_add_certificate"),
+    path("api/certificates/<int:cert_id>", views.api_certificate_detail, name="api_certificate_detail"),
+    path("queue", views.queue, name="queue"),
+    path("queue/add", views.queue_add, name="queue_add"),
+    path("queue/clear", views.queue_clear, name="queue_clear"),
+    path("queue/process", views.queue_process, name="queue_process"),
+    path("api/queue/stats", views.queue_stats, name="queue_stats"),
+    path("api/queue/trigger", views.api_queue_trigger, name="api_queue_trigger"),
+    path("employees", views.employees_dispatch, name="employees_page"),
+    path("employees/<int:emp_id>/edit", views.edit_employee, name="edit_employee"),
+    path("employees/<int:emp_id>/delete", views.delete_employee, name="delete_employee"),
+    path("certificates", views.certificates_dispatch, name="certificates_page"),
+    path("certificates/<int:cert_id>/edit", views.edit_certificate, name="edit_certificate"),
+    path("certificates/<int:cert_id>/delete", views.delete_certificate, name="delete_certificate"),
+    path("export/employees", views.export_employees, name="export_employees"),
+    path("export/certificates", views.export_certificates, name="export_certificates"),
+]

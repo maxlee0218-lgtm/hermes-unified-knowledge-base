@@ -1,0 +1,29 @@
+{
+  "command_id": "CMD-20260510-016-lee-35-status-done",
+  "source": "/private/tmp/llm-wiki-task/runtime-commands/pending/CMD-20260510-016-lee-35-status-done.yaml",
+  "mode": "dry_run",
+  "type": "update_issue_status",
+  "status": "dry_run_rendered",
+  "created_issue": false,
+  "executed": false,
+  "rendered_command": "multica issue update LEE-35 --status done --output json",
+  "argv": [
+    "multica",
+    "issue",
+    "update",
+    "LEE-35",
+    "--status",
+    "done",
+    "--output",
+    "json"
+  ],
+  "stdin_preview": null,
+  "issue": "LEE-35",
+  "target_status": "done",
+  "comment_preview": null,
+  "labels": [],
+  "warnings": [
+    "reason retained in audit JSON only; status command has no reason flag"
+  ],
+  "timestamp": "2026-05-10 15:30:59"
+}

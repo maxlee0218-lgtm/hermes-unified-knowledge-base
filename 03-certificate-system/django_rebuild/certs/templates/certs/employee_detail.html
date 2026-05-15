@@ -1,0 +1,32 @@
+{% extends "certs/base.html" %}
+{% block title %}员工详情{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>{{ employee.name }}</h2>
+  <p>身份证号：{{ employee.id_number }}</p>
+  <p>部门：{{ employee.department|default:"-" }} / 电话：{{ employee.phone|default:"-" }}</p>
+  <p>证书数：{{ cert_count }}，有效：{{ valid_count }}，过期：{{ expired_count }}</p>
+</div>
+<div class="card">
+  <h3>证书</h3>
+  <table>
+    <tr><th>类型</th><th>项目</th><th>到期日</th><th>状态</th></tr>
+    {% for cert in certificates %}
+      <tr><td>{{ cert.certificate_type }}</td><td>{{ cert.operation_item }}</td><td>{{ cert.expiry_date|default:"-" }}</td><td>{{ cert.display_status }}</td></tr>
+    {% empty %}
+      <tr><td colspan="4">暂无证书</td></tr>
+    {% endfor %}
+  </table>
+</div>
+<div class="card">
+  <h3>查询日志</h3>
+  <table>
+    <tr><th>来源</th><th>状态</th><th>备注</th><th>时间</th></tr>
+    {% for log in query_logs %}
+      <tr><td>{{ log.query_source }}</td><td>{{ log.status }}</td><td>{{ log.note }}</td><td>{{ log.created_at }}</td></tr>
+    {% empty %}
+      <tr><td colspan="4">暂无日志</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}员工管理 - 证书管理系统{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <span>👥 员工列表 ({{ employees|length }} 人)</span>
+        <a href="/employees/add" class="btn btn-primary">+ 添加员工</a>
+    </div>
+    <div class="card-body">
+        <form method="get" style="margin-bottom:20px">
+            <input type="text" name="search" value="{{ search }}" placeholder="搜索姓名/身份证/部门" style="padding:8px;width:300px;border:1px solid #ddd;border-radius:4px">
+            <button type="submit" class="btn btn-primary">搜索</button>
+            <a href="/employees" class="btn btn-outline">清除</a>
+        </form>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>姓名</th>
+                    <th>身份证号</th>
+                    <th>部门</th>
+                    <th>电话</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for emp in employees %}
+                <tr>
+                    <td>{{ emp.id }}</td>
+                    <td><a href="/employee/{{ emp.id }}" style="color:#667eea;text-decoration:none;">{{ emp.name }}</a></td>
+                    <td>{{ emp.id_number }}</td>
+                    <td>{{ emp.department or '-' }}</td>
+                    <td>{{ emp.phone or '-' }}</td>
+                    <td>{{ emp.created_at or '-' }}</td>
+                    <td>
+                        <form method="post" action="/employees/{{ emp.id }}/edit" style="display:inline">
+                            <input type="hidden" name="name" value="{{ emp.name }}">
+                            <input type="hidden" name="id_card" value="{{ emp.id_number }}">
+                            <input type="hidden" name="department" value="{{ emp.department or '' }}">
+                            <input type="hidden" name="phone" value="{{ emp.phone or '' }}">
+                        </form>
+                        <a href="/employee/{{ emp.id }}" class="btn-sm" style="padding: 4px 8px; font-size: 12px;">详情</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="7" style="text-align:center;color:#999">暂无数据</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

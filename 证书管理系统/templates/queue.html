@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% block title %}查询队列 - 证书管理系统{% endblock %}
+
+{% block content %}
+<!-- 统计卡片 -->
+<div class="stats">
+    <div class="stat-card">
+        <h3>待处理</h3>
+        <div class="value">{{ counts.pending or 0 }}</div>
+    </div>
+    <div class="stat-card">
+        <h3>处理中</h3>
+        <div class="value">{{ counts.processing or 0 }}</div>
+    </div>
+    <div class="stat-card success">
+        <h3>已完成</h3>
+        <div class="value">{{ counts.completed or 0 }}</div>
+    </div>
+    <div class="stat-card warning">
+        <h3>失败</h3>
+        <div class="value">{{ counts.failed or 0 }}</div>
+    </div>
+</div>
+
+<!-- 操作按钮 -->
+<div class="card">
+    <div class="card-body" style="padding: 15px; display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+        <span style="color: #666;">⏰ 每1小时自动处理 | 每10分钟自动监测</span>
+        {% if counts.pending and counts.pending > 0 %}
+        <button id="processBtn" class="btn btn-primary" onclick="triggerProcess()">🚀 立即处理</button>
+        {% else %}
+        <span class="btn btn-outline" style="opacity: 0.5; cursor: not-allowed;">暂无待处理任务</span>
+        {% endif %}
+        <form action="/queue/clear" method="POST" style="margin: 0;">
+            <button type="submit" class="btn btn-outline" onclick="return confirm('确定要清理已完成的任务吗？');">🗑️ 清理已完成</button>
+        </form>
+        <span id="statusMsg" style="color: #27ae60; font-weight: 500;"></span>
+    </div>
+</div>
+
+<script>
+function triggerProcess() {
+    var btn = document.getElementById('processBtn');
+    var msg = document.getElementById('statusMsg');
+    btn.disabled = true;
+    btn.textContent = '处理中...';
+    msg.textContent = '已触发处理，请稍后刷新页面查看结果';
+    
+    fetch('/api/queue/trigger', {method: 'POST'})
+        .then(r => r.json())
+        .then(data => {
+            if(data.success) {
+                msg.textContent = '✅ 已触发处理，预计5-10分钟完成';
+                setTimeout(function() { location.reload(); }, 5000);
+            } else {
+                msg.textContent = '❌ ' + (data.error || '触发失败');
+                btn.disabled = false;
+                btn.textContent = '🚀 立即处理';
+            }
+        })
+        .catch(err => {
+            msg.textContent = '❌ 网络错误';
+            btn.disabled = false;
+            btn.textContent = '🚀 立即处理';
+        });
+}
+</script>
+
+<!-- 添加任务 -->
+<div class="card">
+    <div class="card-header">
+        <span>📝 添加查询任务</span>
+    </div>
+    <div class="card-body" style="padding: 20px;">
+        <form action="/queue/add" method="POST">
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 500;">输入员工信息（每行一个：工号 姓名）</label>
+                <textarea name="employees" rows="6" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;" placeholder="示例：
+2004109 邹小燕
+2102896 孙明超
+2104640 陈雅云"></textarea>
+            </div>
+            <div style="margin-bottom: 15px; display: flex; gap: 20px; align-items: center;">
+                <label>查询类型：
+                    <select name="query_type" style="padding: 8px; border-radius: 4px;">
+                        <option value="全部">全部证书</option>
+                        <option value="特种设备作业人员证">特种设备作业人员证</option>
+                        <option value="特种作业操作证">特种作业操作证</option>
+                    </select>
+                </label>
+                <label>优先级：
+                    <select name="priority" style="padding: 8px; border-radius: 4px;">
+                        <option value="5">普通(5)</option>
+                        <option value="8">高(8)</option>
+                        <option value="10">紧急(10)</option>
+                    </select>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">添加到队列</button>
+        </form>
+    </div>
+</div>
+
+<!-- 任务列表 -->
+<div class="card">
+    <div class="card-header">
+        <span>📋 任务列表</span>
+        <div>
+            <a href="/queue?status=待处理" class="btn btn-outline" style="margin-right: 5px; {% if filter_status == '待处理' %}background: #667eea; color: white;{% endif %}">待处理</a>
+            <a href="/queue?status=处理中" class="btn btn-outline" style="margin-right: 5px; {% if filter_status == '处理中' %}background: #667eea; color: white;{% endif %}">处理中</a>
+            <a href="/queue?status=已完成" class="btn btn-outline" style="margin-right: 5px; {% if filter_status == '已完成' %}background: #667eea; color: white;{% endif %}">已完成</a>
+            <a href="/queue?status=失败" class="btn btn-outline" style="margin-right: 5px; {% if filter_status == '失败' %}background: #667eea; color: white;{% endif %}">失败</a>
+            <a href="/queue" class="btn btn-outline">全部</a>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if tasks %}
+        <table>
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>工号</th>
+                    <th>姓名</th>
+                    <th>身份证号</th>
+                    <th>查询类型</th>
+                    <th>优先级</th>
+                    <th>状态</th>
+                    <th>结果</th>
+                    <th>耗时</th>
+                    <th>创建时间</th>
+                    <th>完成时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.employee_code or '-' }}</td>
+                    <td><strong>{{ task.name }}</strong></td>
+                    <td>{{ task.id_card or '-' }}</td>
+                    <td>{{ task.query_type }}</td>
+                    <td>{{ task.priority }}</td>
+                    <td>
+                        <span class="status 
+                            {% if task.status == '已完成' %}status-valid
+                            {% elif task.status == '失败' %}status-expired
+                            {% elif task.status == '处理中' %}status-notice
+                            {% elif task.status == '无记录' %}status-warning
+                            {% else %}status-valid{% endif %}">
+                            {{ task.status }}
+                        </span>
+                    </td>
+                    <td>
+                        {% if task.status == '已完成' %}
+                            {{ task.result_count }} 条 {% if task.new_cert_count > 0 %}<span style="color: green;">(+{{ task.new_cert_count }}新增)</span>{% endif %}
+                        {% elif task.status == '失败' %}
+                            <span style="color: red; font-size: 12px;">{{ task.error_message[:30] if task.error_message else '-' }}</span>
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if task.duration_seconds %}
+                            {{ task.duration_seconds }}s
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>{{ task.created_at }}</td>
+                    <td>{{ task.completed_at or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <p>暂无任务</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- 执行统计 -->
+{% if statistics %}
+<div class="card">
+    <div class="card-header">
+        <span>📊 执行统计</span>
+    </div>
+    <div class="card-body">
+        <table>
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    <th>总任务</th>
+                    <th>已完成</th>
+                    <th>失败</th>
+                    <th>无记录</th>
+                    <th>新增证书</th>
+                    <th>平均耗时</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stat in statistics %}
+                <tr>
+                    <td>{{ stat.query_date }}</td>
+                    <td>{{ stat.total_tasks }}</td>
+                    <td style="color: green;">{{ stat.completed }}</td>
+                    <td style="color: red;">{{ stat.failed }}</td>
+                    <td style="color: orange;">{{ stat.no_record }}</td>
+                    <td style="color: green; font-weight: bold;">{{ stat.total_new_certs or 0 }}</td>
+                    <td>{{ "%.1f"|format(stat.avg_duration or 0) }}s</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

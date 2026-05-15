@@ -1,0 +1,9 @@
+{
+  "task_id": "TASK-20260510-006-windows-d-drive-inventory-extension",
+  "task_file": "TASK-20260510-006-windows-d-drive-inventory-extension.md",
+  "multica_issue": "LEE-30",
+  "status": "done",
+  "created_at": "2026-05-10 09:06:54",
+  "agent": "\u6570\u636e\u4e13\u5bb6",
+  "log_file": "/root/wiki/tasks/logs/task_inbox_watcher.log"
+}

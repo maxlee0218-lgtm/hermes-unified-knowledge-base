@@ -1,0 +1,7 @@
+command_id: CMD-20260510-017-lee-30-status-blocked
+type: update_issue_status
+mode: dry_run
+issue: LEE-30
+target_status: blocked
+reason: "缺 Windows D 盘报告，建议 blocked 或 waiting_for_report；仅渲染命令。"
+

@@ -1,0 +1,36 @@
+{% extends "certs/base.html" %}
+{% block title %}证书管理{% endblock %}
+{% block content %}
+<div class="card">
+  <form method="get">
+    <select name="employee_id">
+      <option value="">全部员工</option>
+      {% for emp in employees %}
+        <option value="{{ emp.id }}" {% if selected_employee_id == emp.id %}selected{% endif %}>{{ emp.name }}</option>
+      {% endfor %}
+    </select>
+    <input name="search" value="{{ search }}" placeholder="搜索证书类型/作业项目">
+    <button type="submit">筛选</button>
+    <a class="btn" href="/certificates/add">新增证书</a>
+    <a class="btn" href="/export/certificates">导出证书</a>
+  </form>
+</div>
+<div class="card">
+  <table>
+    <tr><th>ID</th><th>员工</th><th>证书类型</th><th>项目</th><th>到期日</th><th>状态</th><th>操作</th></tr>
+    {% for cert in certificates %}
+      <tr>
+        <td>{{ cert.id }}</td>
+        <td>{{ cert.employee.name }}</td>
+        <td>{{ cert.certificate_type }}</td>
+        <td>{{ cert.operation_item }}</td>
+        <td>{{ cert.expiry_date|default:"-" }}</td>
+        <td><span class="tag">{{ cert.display_status }}</span></td>
+        <td><form class="inline" method="post" action="/certificates/{{ cert.id }}/delete">{% csrf_token %}<button type="submit">删除</button></form></td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="7">暂无证书</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

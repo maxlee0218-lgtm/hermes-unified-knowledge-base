@@ -1,0 +1,250 @@
+# ADS_SC_XL_13 主链
+
+## 1. `dwd_mes_mm_task_group_output`
+
+- 是否找到 SQL：是
+- SQL 文件路径：
+  - `sql/source/ads_sc_xl_13/00_group_output_source_snapshot.sql`
+  - `sql/source/ads_sc_xl_13/stg_dw__dwd_mes_mm_task_group_output_xl13.sql`
+- 来源表：
+  - `ods_mes_mm_task_group_output`
+  - `ods_mes_mm_task_prod_actual`
+  - `with_attr_value`
+- 目标表：
+  - `dwd_mes_mm_task_group_output`
+- CTE：无主 CTE，使用 update queue
+- join 逻辑：
+  - `group_output -> task_prod_actual`
+  - `group_output -> order_item_task -> order_item`
+  - `group_output -> machine/machine_group/workcenter`
+  - `group_output -> with_attr_value`
+- where 条件：
+  - 基于增量水位
+  - `status = 1`
+  - `end_time is not null`
+- group by 字段：以来源主键/分组输出明细为主
+- union all 分支：有增量队列 union 逻辑
+- case when 规则：
+  - 工时与 `data_date` 按租户班次切日
+  - 硅钢 `attr1`、表面分类规则
+- 核心字段来源：
+  - `work_date`：实际业务日期是 `data_date / bi_sc_xl_013_process_001_dataDate`
+  - `attr1`：`bi_sc_xl_013_process_001_attr1`
+  - `manuf_line_name`：`defined_manuf_line_name`
+  - `material_name`：`sku_name / cat_name`
+  - `day_weight`：本层仍为 `weight`
+  - `tenant_id`：来源表原值
+- 当前是否可重构：可
+- 当前风险：
+  - `with_attr_value`
+  - `dwd_silicon_steel_surface_info`
+  - tenant 切日规则
+
+## 2. `ads_sc_xl_13_process1`
+
+- 是否找到 SQL：是
+- SQL 文件路径：
+  - `sql/source/ads_sc_xl_13/01_process1_source_snapshot.sql`
+- 来源表：
+  - `dwd_mes_mm_task_group_output`
+- 目标表：
+  - `ads_sc_xl_13_process1`
+- CTE：无
+- join 逻辑：无额外 join，直接聚合
+- where 条件：
+  - `plate_type is not null`
+  - `defined_manuf_line_name is not null`
+  - `batch_code <> ''`
+  - `is_ignore = 0`
+  - 租户差异逻辑：`80/92` 与其他租户 `send_happened = 1`
+  - `INTERVAL 35 DAY`
+- group by 字段：
+  - `tenant_id`
+  - `defined_manuf_line_name`
+  - `surface`
+  - `attr1`
+  - `steel_grade_series`
+  - `data_date`
+  - `plate_type`
+- union all 分支：有租户分支
+- case when 规则：
+  - `A/R` 级别、`-RD`、保留材、特定产线剔除
+- 核心字段来源：
+  - `work_date`：`bi_sc_xl_013_process_001_dataDate`
+  - `attr1`：`bi_sc_xl_013_process_001_attr1`
+  - `manuf_line_name`：`defined_manuf_line_name`
+  - `material_name`：`surface + steel_grade_series`
+  - `day_weight`：`sum(a.weight) / 1000`
+  - `tenant_id`：`a.tenant_id`
+- 当前是否可重构：可
+- 当前风险：
+  - 过滤条件很重
+  - `send_happened`、`is_retention` 等规则缺一不可
+
+## 3. `ads_sc_xl_13_defined`
+
+- 是否找到 SQL：是
+- SQL 文件路径：
+  - `sql/source/ads_sc_xl_13/02_defined_source_snapshot.sql`
+- 来源表：
+  - `ads_sc_xl_13_process1`
+  - `dim_date_info`
+- 目标表：
+  - `ads_sc_xl_13_defined`
+- CTE：
+  - 日期骨架
+  - 历史组合全集
+- join 逻辑：
+  - `dim_date_info` x 历史组合
+  - left join `ads_sc_xl_13_process1`
+- where 条件：
+  - `INTERVAL 35 DAY`
+  - 历史组合拉长到 `INTERVAL 350 DAY`
+- group by 字段：无额外 group by，核心是日期补齐
+- union all 分支：无
+- case when 规则：
+  - `attr1 is null` 时放宽匹配
+- 核心字段来源：
+  - `work_date`：`dr.date_id`
+  - `attr1`：历史组合中的 `attr1`
+  - `manuf_line_name`：历史组合中的 `manuf_line_name`
+  - `material_name`：`surface + steel_grade_series`
+  - `day_weight`：`orig.weight`
+  - `tenant_id`：历史组合中的 `tenant_id`
+- 当前是否可重构：可
+- 当前风险：
+  - 补零行逻辑必须完整复刻
+
+## 4. `ads_sc_xl_13_defined_manuf_line_name`
+
+- 是否找到 SQL：是
+- SQL 文件路径：
+  - `sql/source/ads_sc_xl_13/03_defined_manuf_line_name_source_snapshot.sql`
+- 来源表：
+  - `ads_sc_xl_13_defined`
+- 目标表：
+  - `ads_sc_xl_13_defined_manuf_line_name`
+- CTE：无
+- join 逻辑：无
+- where 条件：
+  - `manuf_line_name <> ''`
+  - `INTERVAL 30 DAY`
+- group by 字段：
+  - `tenant_id`
+  - `plate_type`
+  - `manuf_line_name`
+  - `attr1`
+  - `data_date`
+- union all 分支：无
+- case when 规则：默认将未丰富指标置零
+- 核心字段来源：
+  - `work_date`：`data_date`
+  - `attr1`：原值
+  - `manuf_line_name`：原值
+  - `material_name`：无固定单列
+  - `day_weight`：`sum(weight)`
+  - `tenant_id`：原值
+- 当前是否可重构：可
+- 当前风险：
+  - 该层只是主干空壳，后续指标依赖支线回填
+
+## 5. `ads_sc_xl_13_defined_manuf_line_name_combined`
+
+- 是否找到 SQL：是
+- SQL 文件路径：
+  - `sql/source/ads_sc_xl_13/04_combined_source_snapshot.sql`
+  - `sql/source/ads_sc_xl_13/stg_dw__ads_sc_xl_13_defined_manuf_line_name_combined.sql`
+- 来源表：
+  - `ads_sc_xl_13_defined_manuf_line_name`
+  - `with_attr_value`
+  - 后续支线 UPDATE/INSERT 任务
+- 目标表：
+  - `ads_sc_xl_13_defined_manuf_line_name_combined`
+- CTE：无核心 CTE
+- join 逻辑：
+  - `defined_manuf_line_name` 与 `with_attr_value` 中产线映射
+  - 后续被多条支线 update
+- where 条件：
+  - `INTERVAL 35 DAY`
+- group by 字段：无额外 group by，主逻辑是 projection
+- union all 分支：无
+- case when 规则：
+  - 将 `weight -> day_weight`
+  - 设置 `rk`
+  - 后续叠加 `合计 / 总计`
+- 核心字段来源：
+  - `work_date`：`data_date`
+  - `attr1`：原值或后置覆盖
+  - `manuf_line_name`：原值或后置总计
+  - `material_name`：无固定单列
+  - `day_weight`：`d.weight`
+  - `tenant_id`：原值
+- 当前是否可重构：可，但当前最大差异就在这一层之上和之内
+- 当前风险：
+  - 所有支线都回写这里
+  - 如果支线少一条，最终表就会偏
+
+## 6. `ads_sc_xl_13_defined_manuf_line_name_combined_001`
+
+- 是否找到 SQL：是
+- SQL 文件路径：
+  - `sql/source/ads_sc_xl_13/05_combined_001_source_snapshot.sql`
+  - `sql/source/ads_sc_xl_13/stg_dw__ads_sc_xl_13_defined_manuf_line_name_combined_001.sql`
+- 来源表：
+  - `ads_sc_xl_13_defined_manuf_line_name_combined`
+- 目标表：
+  - `ads_sc_xl_13_defined_manuf_line_name_combined_001`
+- CTE：无
+- join 逻辑：无
+- where 条件：
+  - 按 `plate_type` 分支
+- group by 字段：
+  - `tenant_id`
+  - `plate_type`
+  - `period`
+  - `data_date`
+- union all 分支：
+  - 日 / 月两套展示分支
+- case when 规则：
+  - `day_weight -> weight`
+  - `month_weight -> weight`
+  - `合计`、`总计`展示行
+- 核心字段来源：
+  - `work_date`：`data_date`
+  - `attr1`：原值或清空
+  - `manuf_line_name`：原值或 `总计`
+  - `material_name`：无固定单列
+  - `day_weight`：在该层折叠为 `weight`
+  - `tenant_id`：原值
+- 当前是否可重构：可
+- 当前风险：
+  - `period` 混合日/月，不能直接当作唯一日级验收表
+
+## 7. `ads_sc_xl_13_defined_manuf_line_name_combined_002`
+
+- 是否找到 SQL：是
+- SQL 文件路径：
+  - `sql/source/ads_sc_xl_13/06_combined_002_source_snapshot.sql`
+  - `sql/source/ads_sc_xl_13/ads_sc_xl_13_defined_manuf_line_name_combined_002_local.sql`
+  - `sql/source/ads_sc_xl_13/stg_dw__ads_sc_xl_13_defined_manuf_line_name_combined_002.sql`
+- 来源表：
+  - `ads_sc_xl_13_defined_manuf_line_name_combined`
+- 目标表：
+  - `ads_sc_xl_13_defined_manuf_line_name_combined_002`
+- CTE：无
+- join 逻辑：无
+- where 条件：无过滤，整表投影
+- group by 字段：无
+- union all 分支：无
+- case when 规则：无额外派生，直接宽表投影
+- 核心字段来源：
+  - `work_date`：`data_date`
+  - `attr1`：原值
+  - `manuf_line_name`：原值
+  - `material_name`：无固定单列
+  - `day_weight`：`day_weight`
+  - `tenant_id`：原值
+- 当前是否可重构：是
+- 当前风险：
+  - 壳层本身风险小
+  - 所有风险都来自 `combined` 之前和 `combined` 本身的支撑逻辑

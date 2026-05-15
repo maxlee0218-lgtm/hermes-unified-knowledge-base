@@ -1,0 +1,30 @@
+command_id: CMD-20260510-020-gpt-github-ingress-smoke
+type: create_issue
+mode: approved
+approval: APPROVED_CREATE_ISSUE
+approved_by: Codex
+workspace: default
+title: 【测试】GPT GitHub 任务入口烟测
+assignee: Runtime首脑
+priority: low
+status: todo
+body: |
+  Goal: verify ChatGPT/GPT can create a Multica task by committing a YAML command file to GitHub.
+
+  This is a safe gateway smoke test:
+  - Runtime首脑 must treat this as GitHub intake only.
+  - Runtime首脑 must not write business artifacts.
+  - Expected action is classify/comment/status only.
+  - No production systems may be touched.
+
+  Acceptance:
+  - GitHub gateway processes this command once.
+  - runtime-commands/done/CMD-20260510-020-gpt-github-ingress-smoke.json is pushed back.
+  - A Multica issue is created and assigned to Runtime首脑.
+forbidden_actions:
+  - modify_production_db
+  - modify_dolphin
+  - modify_datax
+  - delete_files
+  - force_push
+  - expose_secrets

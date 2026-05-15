@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block title %}首页概览 - 证书管理系统{% endblock %}
+
+{% block content %}
+<!-- 统计卡片 -->
+<div class="stats">
+    <div class="stat-card">
+        <h3>员工总数</h3>
+        <div class="value">{{ employee_count }}</div>
+    </div>
+    <div class="stat-card">
+        <h3>证书总数</h3>
+        <div class="value">{{ certificate_count }}</div>
+    </div>
+    <div class="stat-card success">
+        <h3>有效证书</h3>
+        <div class="value">{{ valid_count }}</div>
+    </div>
+    <div class="stat-card warning">
+        <h3>已过期</h3>
+        <div class="value">{{ expired_count }}</div>
+    </div>
+</div>
+
+<!-- 搜索和筛选 -->
+<div class="card">
+    <div class="card-header">
+        <span>筛选查询</span>
+    </div>
+    <div class="card-body" style="padding: 15px;">
+        <form action="/" method="GET" id="filter-form">
+            <div class="filter-row" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end;">
+                <div class="filter-item">
+                    <label style="font-weight: 500; margin-bottom: 5px; display: block; font-size: 13px;">证书状态：</label>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <label style="display: flex; align-items: center; cursor: pointer; font-size: 13px;">
+                            <input type="checkbox" name="status" value="有效" {% if '有效' in status_list %}checked{% endif %} onchange="submitForm()">
+                            <span style="margin-left: 4px;">有效</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer; font-size: 13px;">
+                            <input type="checkbox" name="status" value="已过期" {% if '已过期' in status_list %}checked{% endif %} onchange="submitForm()">
+                            <span style="margin-left: 4px;">已过期</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer; font-size: 13px;">
+                            <input type="checkbox" name="status" value="即将到期" {% if '即将到期' in status_list %}checked{% endif %} onchange="submitForm()">
+                            <span style="margin-left: 4px;">即将到期</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="filter-item">
+                    <label style="font-weight: 500; margin-bottom: 5px; display: block; font-size: 13px;">证书类型：</label>
+                    <select name="cert_type" style="padding: 6px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;" onchange="submitForm()">
+                        <option value="">全部类型</option>
+                        <option value="特种设备作业人员证" {% if cert_type_filter == '特种设备作业人员证' %}selected{% endif %}>特种设备作业人员证</option>
+                        <option value="特种作业操作证" {% if cert_type_filter == '特种作业操作证' %}selected{% endif %}>特种作业操作证</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label style="font-weight: 500; margin-bottom: 5px; display: block; font-size: 13px;">关键词：</label>
+                    <input type="text" name="keyword" placeholder="姓名或身份证号" 
+                           style="padding: 6px 10px; border: 1px solid #ddd; border-radius: 6px; width: 160px; font-size: 13px;"
+                           value="{{ keyword or '' }}">
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 13px; padding: 6px 14px;">筛选</button>
+                    <a href="/" class="btn btn-outline" style="font-size: 13px; padding: 6px 14px;">重置</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 证书列表 -->
+<div class="card">
+    <div class="card-header">
+        <span>证书列表 ({{ certificates|length }} 条) {% if not show_all %}- 仅显示最新证书{% endif %}</span>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            {% if not show_all %}
+            <a href="/?show_all=1{% for s in status_list %}&status={{ s }}{% endfor %}{% if cert_type_filter %}&cert_type={{ cert_type_filter }}{% endif %}{% if keyword %}&keyword={{ keyword }}{% endif %}" class="btn btn-outline" style="font-size: 12px;">显示全部</a>
+            {% else %}
+            <a href="/{% for s in status_list %}{% if loop.first %}?{% else %}&{% endif %}status={{ s }}{% endfor %}{% if cert_type_filter %}{% if status_list %}&{% else %}?{% endif %}cert_type={{ cert_type_filter }}{% endif %}{% if keyword %}{% if status_list or cert_type_filter %}&{% else %}?{% endif %}keyword={{ keyword }}{% endif %}" class="btn btn-outline" style="font-size: 12px;">仅显示最新</a>
+            {% endif %}
+            <a href="/queue" class="btn btn-primary" style="font-size: 12px;">查询队列</a>
+            <a href="/expiring" class="btn btn-outline" style="font-size: 12px;">即将到期</a>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if certificates %}
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>身份证号</th>
+                    <th>证书类型</th>
+                    <th>操作项目</th>
+                    <th>发证机关</th>
+                    <th>应复审日期</th>
+                    <th>实际复审日期</th>
+                    <th>有效期至</th>
+                    <th>剩余天数/预警</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cert in certificates %}
+                <tr>
+                    <td><strong>{{ cert.name }}</strong></td>
+                    <td>{{ cert.id_card }}</td>
+                    <td>{{ cert.certificate_type or '-' }}</td>
+                    <td>{{ cert.operation_item or '-' }}</td>
+                    <td>{{ cert.issuing_authority or '-' }}</td>
+                    <td>{{ cert.review_date or '-' }}</td>
+                    <td>{{ cert.actual_review_date or '-' }}</td>
+                    <td>{{ cert.expiry_date or '-' }}</td>
+                    <td>
+                        {% if cert.display_status == '已替换' %}
+                            <span style="color: #888;">已有新证</span>
+                        {% elif not cert.actual_review_date and cert.review_date %}
+                            {# 未复审，对应复审日期预警 #}
+                            {% set days_to_review = cert.days_to_review %}
+                            {% if days_to_review is not none %}
+                                {% if days_to_review < 0 %}
+                                    <span class="days-critical">复审逾期 {{ -days_to_review }} 天</span>
+                                {% elif days_to_review <= 30 %}
+                                    <span class="days-critical">需复审 {{ days_to_review }} 天</span>
+                                {% elif days_to_review <= 60 %}
+                                    <span class="days-warning">需复审 {{ days_to_review }} 天</span>
+                                {% else %}
+                                    <span class="days-ok">需复审 {{ days_to_review }} 天</span>
+                                {% endif %}
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% elif cert.days_until_expiry is not none %}
+                            {# 已复审，对有效期预警 #}
+                            {% if cert.days_until_expiry < 0 %}
+                                <span class="days-critical">已过期 {{ -cert.days_until_expiry }} 天</span>
+                            {% elif cert.days_until_expiry <= 30 %}
+                                <span class="days-critical">{{ cert.days_until_expiry }} 天</span>
+                            {% elif cert.days_until_expiry <= 60 %}
+                                <span class="days-warning">{{ cert.days_until_expiry }} 天</span>
+                            {% else %}
+                                <span class="days-ok">{{ cert.days_until_expiry }} 天</span>
+                            {% endif %}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if cert.certificate_id %}
+                        <span class="status {{ cert.status_class }}">{{ cert.display_status }}</span>
+                        {% else %}
+                        <span style="color: #888;">无证书</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/employee/{{ cert.employee_id }}" class="btn btn-outline" style="padding: 4px 8px; font-size: 12px;">详情</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <p>暂无数据</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+function submitForm() {
+    document.getElementById('filter-form').submit();
+}
+</script>
+{% endblock %}

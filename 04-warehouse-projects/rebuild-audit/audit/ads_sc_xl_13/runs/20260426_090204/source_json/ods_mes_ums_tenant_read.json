@@ -1,0 +1,12 @@
+[
+  {
+    "task_code": 21271806366592,
+    "task_name": "工单原料成分（dwd_mes_mm_order_raw_component）",
+    "task_type": "SQL",
+    "process_code": 21271881636864,
+    "process_name": "工单原料成分(dwd_mes_mm_order_raw_component)",
+    "project_name": "生产-通用",
+    "update_time": "2026-04-09 18:02:02",
+    "sql_preview": "DELETE FROM dwd_mes_mm_order_raw_component;\r\nINSERT INTO dwd_mes_mm_order_raw_component (\r\n    id, heat_no, ferroboron, pure_iron, metallic_silicon,\r\n    machine_code, tenant_name, order_item_code, status,\r\n    created_by, created_time, modified_by, modified_time,\r\n    ferroboron_sku_code, pure_iron_sku_code, metallic_silicon_sku_code,\r\n    output_generate_state, molten_steel_bacth_code, waste_code,\r\n    molten_steel, waste\r\n)\r\nSELECT\r\n    morc.id,\r\n    morc.heat_no,\r\n    morc.ferroboron,\r\n    morc.pure_iron,\r\n    morc.metallic_silicon,\r\n    morc.machine_code,\r\n    mut.tenant_name AS tenant_name,\r\n    morc.order_item_code,\r\n    morc.status,\r\n    morc.created_by,\r\n    morc.created_time,\r\n    morc.modified_by,\r\n    morc.modified_time,\r\n    morc.ferroboron_sku_code,\r\n    morc.pure_iron_sku_code,\r\n    morc.metallic_silicon_sku_code,\r\n    morc.output_generate_state,\r\n    morc.molten_steel_bacth_code,\r\n    morc.waste_code,\r\n    morc.molten_steel,\r\n    morc.waste\r\nFROM ods_mes_mm_order_raw_component AS morc\r\n          JOIN ods_mes_ums_tenant AS mut ON mut.tenant_id = morc.tenant_id and mut.status = 1\r\nWHERE morc.status = 1;"
+  }
+]

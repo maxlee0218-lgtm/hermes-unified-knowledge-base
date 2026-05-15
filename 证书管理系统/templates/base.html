@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}证书管理系统{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* 导航栏 */
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .navbar nav {
+            margin-top: 10px;
+        }
+        .navbar nav a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            margin-right: 20px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .navbar nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .navbar nav a.active {
+            background: rgba(255,255,255,0.3);
+        }
+        /* 统计卡片 */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .stat-card h3 {
+            color: #888;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+        }
+        .stat-card.warning .value {
+            color: #e74c3c;
+        }
+        .stat-card.success .value {
+            color: #27ae60;
+        }
+        /* 表格 */
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .card-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-body {
+            padding: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #666;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        /* 状态标签 */
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .status-valid {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-expired {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-notice {
+            background: #cce5ff;
+            color: #004085;
+        }
+        /* 按钮 */
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5a6fd6;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #667eea;
+            color: #667eea;
+        }
+        .btn-outline:hover {
+            background: #667eea;
+            color: white;
+        }
+        /* 搜索框 */
+        .search-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .search-form input, .search-form select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .search-form input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        /* 员工详情 */
+        .employee-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .info-item label {
+            display: block;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 3px;
+        }
+        .info-item span {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .navbar {
+                padding: 10px 15px;
+            }
+            .navbar h1 {
+                font-size: 18px;
+            }
+            .navbar nav a {
+                margin-right: 10px;
+                font-size: 13px;
+                padding: 4px 6px;
+            }
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .stat-card {
+                padding: 15px;
+            }
+            .stat-card .value {
+                font-size: 24px;
+            }
+            .card-header {
+                padding: 12px 15px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .card-header span {
+                font-size: 14px;
+            }
+            /* 表格横向滚动 */
+            .card-body {
+                overflow-x: auto;
+            }
+            table {
+                font-size: 12px;
+                min-width: 600px;
+            }
+            th, td {
+                padding: 8px 6px;
+            }
+            .btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .search-form {
+                flex-direction: column;
+            }
+            .search-form input, .search-form select {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .navbar nav {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .navbar nav a {
+                font-size: 12px;
+            }
+            .stat-card h3 {
+                font-size: 12px;
+            }
+            .stat-card .value {
+                font-size: 20px;
+            }
+        }
+        /* 天数高亮 */
+        .days-critical {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        .days-warning {
+            color: #f39c12;
+            font-weight: 600;
+        }
+        .days-ok {
+            color: #27ae60;
+        }
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+        .empty-state p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>📋 证书管理系统</h1>
+        <nav>
+            <a href="/" class="{% if request.endpoint == 'index' %}active{% endif %}">首页概览</a>
+            <a href="/queue" class="{% if request.endpoint == 'queue' %}active{% endif %}">查询队列</a>
+            <a href="/expiring" class="{% if request.endpoint == 'expiring' %}active{% endif %}">即将到期</a>
+            <a href="/logs" class="{% if request.endpoint == 'logs' %}active{% endif %}">查询日志</a>
+            <a href="/employees/add" class="{% if request.endpoint == 'employee_add_page' %}active{% endif %}" style="background: rgba(255,255,255,0.2);">📝 录入管理</a>
+        </nav>
+    </div>
+    
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    
+    <footer style="text-align: center; padding: 20px; color: #888; font-size: 12px;">
+        证书管理系统 v1.0 | 数据更新时间: {{ now }}
+    </footer>
+    
+    <!-- 更新通知弹窗 -->
+    <div id="notification-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
+        <div style="background: white; border-radius: 12px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+            <div style="padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; color: #333;">📢 系统更新通知</h3>
+                <button onclick="closeModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #888;">&times;</button>
+            </div>
+            <div id="notification-content" style="padding: 20px;"></div>
+            <div style="padding: 15px 20px; border-top: 1px solid #eee; text-align: right;">
+                <button onclick="markAllRead()" style="background: #667eea; color: white; border: none; padding: 10px 24px; border-radius: 6px; cursor: pointer; font-size: 14px;">我知道了</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/api/notifications').then(r => r.json()).then(data => {
+            if (data.notifications && data.notifications.length > 0) showNotifications(data.notifications);
+        });
+    });
+    function showNotifications(notifications) {
+        let html = '';
+        notifications.forEach(n => {
+            html += '<div style="padding: 12px; background: ' + (n.notification_type === '证书新增' ? '#e8f5e9' : '#e3f2fd') + '; border-radius: 8px; margin-bottom: 10px;">';
+            html += '<div style="font-weight: 600; margin-bottom: 5px;">' + n.title + '</div>';
+            html += '<div style="font-size: 13px; color: #666;">' + n.content + '</div>';
+            html += '<div style="font-size: 11px; color: #999; margin-top: 5px;">' + n.created_at + '</div></div>';
+        });
+        document.getElementById('notification-content').innerHTML = html;
+        document.getElementById('notification-modal').style.display = 'flex';
+    }
+    function closeModal() { document.getElementById('notification-modal').style.display = 'none'; }
+    function markAllRead() {
+        fetch('/api/notifications/read', {method: 'POST'}).then(r => r.json()).then(data => closeModal());
+    }
+    </script>
+</body>
+</html>

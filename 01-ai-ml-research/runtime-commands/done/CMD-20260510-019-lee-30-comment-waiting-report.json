@@ -1,0 +1,27 @@
+{
+  "command_id": "CMD-20260510-019-lee-30-comment-waiting-report",
+  "source": "/private/tmp/llm-wiki-task/runtime-commands/pending/CMD-20260510-019-lee-30-comment-waiting-report.yaml",
+  "mode": "dry_run",
+  "type": "add_issue_comment",
+  "status": "dry_run_rendered",
+  "created_issue": false,
+  "executed": false,
+  "rendered_command": "multica issue comment add LEE-30 --content-stdin --output json",
+  "argv": [
+    "multica",
+    "issue",
+    "comment",
+    "add",
+    "LEE-30",
+    "--content-stdin",
+    "--output",
+    "json"
+  ],
+  "stdin_preview": "Dry-run suggestion only: LEE-30 is waiting for the Windows D drive report before closure.\nNo real Multica issue was modified by this command gateway spike.",
+  "issue": "LEE-30",
+  "target_status": null,
+  "comment_preview": "Dry-run suggestion only: LEE-30 is waiting for the Windows D drive report before closure.\nNo real Multica issue was modified by this command gateway spike.\n",
+  "labels": [],
+  "warnings": [],
+  "timestamp": "2026-05-10 15:30:59"
+}

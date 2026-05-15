@@ -1,0 +1,633 @@
+{
+  "batch": "handbrain-20260511",
+  "generated_at": "2026-05-11T22:28:00",
+  "file_count": 89,
+  "total_size_bytes": 605508,
+  "items": [
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260509-1305-LEE6-数仓架构全景/report.md",
+      "size_bytes": 17128,
+      "sha256": "a1c810e1dd7b8fde7e343c841d42046a866d277594fe330baef30c97409cd83d",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260509-2155-PolarDB连通性核验报告.md",
+      "size_bytes": 1942,
+      "sha256": "0016081df2f52247927453df2ad979b2c6a9bf510e9f323ff688552a000d07fd",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260509-2205-PolarDB阻断报告.md",
+      "size_bytes": 1739,
+      "sha256": "f31fb93922315682952814fb624e6d1f1d90fce51f6399a56796cc4867156645",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260509-2230-ADS数据质量风险治理建议报告.md",
+      "size_bytes": 5533,
+      "sha256": "1cb9953393a07bc3e0f915f96216e6f31a1f6d019f8d42688a1c30c7f66b91a0",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260509-2305-任务闭环与知识沉淀报告.md",
+      "size_bytes": 4114,
+      "sha256": "d4fdd3b13b9b2391443070cf6fedda1147f12f430203b7ede7bdb9d86f6192c4",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260509-LEE13-LEE14沙箱验证验收与根因报告.md",
+      "size_bytes": 4614,
+      "sha256": "70e373a9aed7ffede3a930671f7f16c2aa2b0d01c10cb6b3c470b5bec7c21aaf",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260509-P1风险表排查计划.md",
+      "size_bytes": 3461,
+      "sha256": "0cc2a708d2d759972af00d464987d067e9c44bbb28e465281f3e37a83f6eeb05",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260509-PocketClaw定时任务配置说明.md",
+      "size_bytes": 4477,
+      "sha256": "c5e02f3e636f6a00d26cad3f52ac469abadc536848959d5fafc4f765d8bad821",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260509-本轮闭环复盘摘要.md",
+      "size_bytes": 7279,
+      "sha256": "8a1b534193eb93eab60ff4b97884814863387fcf0d61f8d0b7395fa280689ecf",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md",
+      "size_bytes": 4507,
+      "sha256": "05f107f5fed7c6f8a560b3e9c4c33093f50dea1ccf30111eb023f043b0a83772",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器监控停止状态报告.md",
+      "size_bytes": 1608,
+      "sha256": "1886dde33289ecc9752f70f66e7be3b8de7f55d69996281507468695f3b46a05",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-Agentic数仓重构100源研究报告.md",
+      "size_bytes": 137931,
+      "sha256": "6eb5659d806b2104d3e9fb7fac8e721b53b2d11978022aa0c536c857fc36342e",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-Agent持续纠偏引导机制方案.md",
+      "size_bytes": 2110,
+      "sha256": "af235e54380b58b235b97624126501f3f22e94161e7cd6c746d82f46ae35a609",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-Agent规则更新状态报告.md",
+      "size_bytes": 2461,
+      "sha256": "9f0cf73d7394ad8db554262a384cfb69625de91e5f9a1616c0a8026fc289f392",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-GitHub任务总线打通验证报告.md",
+      "size_bytes": 3951,
+      "sha256": "78356fb69b5d8b7481198ddd2d0d7a6ca5616d08779be0e938314ae038361e45",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-LEE22-Windows旁路部署状态报告.md",
+      "size_bytes": 2291,
+      "sha256": "98092011ef1e4942814713a6268e3e6804ce8f6020827a7cad27a2760145f2ed",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-LEE22-当前阶段判断报告.md",
+      "size_bytes": 2468,
+      "sha256": "f035e0eeee10a476961b1f6443838e64855daddd61de9b380bed765da27dcb31",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-LEE22-状态更新-传输通道已建立.md",
+      "size_bytes": 1535,
+      "sha256": "9e509ec763cd0659cf56ac9aac5917bea1bf6210733dc8ab4f038afca748f5fc",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-LEE24最终验收报告.md",
+      "size_bytes": 3956,
+      "sha256": "4a0a370545e92b178a3995ffab555a85e386b16e0ce9dabc9de7ad9853a6825e",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-PocketClaw定时机制最终验收状态.md",
+      "size_bytes": 1712,
+      "sha256": "9e74094508828802d7b4227692c00aa5db8097fe195cab80585b28adb578a3f3",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-PocketClaw定时触发验证报告.md",
+      "size_bytes": 1872,
+      "sha256": "01e6ca58dc4e1ba1b61910eced5795b2b5fdea7c7326d58b1ecd73789815765c",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-PocketClaw触发验证报告.md",
+      "size_bytes": 2966,
+      "sha256": "a5b543a5b9924c9620bb636c6a348eb6ae058aad0ab9344bb1379e8c87bdfec3",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-REVIEW-LOOP-DRY-RUN验证报告.md",
+      "size_bytes": 3269,
+      "sha256": "a1cc3ad92ff2963ff8934d5d20711b8d5d0b7c63da9bdce3b68408f62fde241d",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-REVIEW-LOOP正式启用验证报告.md",
+      "size_bytes": 3359,
+      "sha256": "5855ff6e13bb0a82ef009d1d82c672303f0e1f5837e1b9d945eb6d3b77e8029d",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-TASK-20260510-新体系任务最终状态表.md",
+      "size_bytes": 4132,
+      "sha256": "32a21f3d61899be5e941372805c198f7618fa75d3554607bb7d28341d361b77d",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-cancelled任务手动闭环报告.md",
+      "size_bytes": 1615,
+      "sha256": "d2ccdad33b8a00924d883080da2fd7d5036837a38915e23f55c06bfbb7c6b10f",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-clawpilot技能安装与传输报告.md",
+      "size_bytes": 1918,
+      "sha256": "c2b629ff416f68df4be22a7a1ff3e4b506b46d072e695042e3c862072aceb6fe",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-ghost清理详细说明.md",
+      "size_bytes": 1868,
+      "sha256": "09d7c66d7e4d2ca1c220ead6a7920b29d4f274a578e4d8bb87e197ca55a5cae3",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-loop-heartbeat机制报告.md",
+      "size_bytes": 4218,
+      "sha256": "a37422425f7122cad57ac61feaf75ef989d67790b998bb76d8c5dba0463be6ee",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-review-loop-warning分诊报告.md",
+      "size_bytes": 4151,
+      "sha256": "fd75279da5a3d01c3f8d3ac2f6833e4ac3fc11b908e8d5b9fb477a9aa572dafe",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-review-loop-修复方案.md",
+      "size_bytes": 1816,
+      "sha256": "4495f50aa6c711f2c08724e8dab18aaad2204efbdceb96d394fff34684c7dd9e",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-三类Agent角色摸底与协同规范.md",
+      "size_bytes": 16668,
+      "sha256": "7243444afbddc142f3b92d4317872a96e65a8f0b7e444e5c085c0d90774f59eb",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-任务建立机制变更方案.md",
+      "size_bytes": 1827,
+      "sha256": "ade36716dfc7856d063c42db274434c165a00661ae1a7961154f2db81bf8e55b",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-任务最终闭环清单.md",
+      "size_bytes": 2537,
+      "sha256": "0ef4aa8956c3953ceedce9bafcb6a73df52fd605ba767fa711cbbe11b7ed5d64",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-任务闭环状态最终报告.md",
+      "size_bytes": 2598,
+      "sha256": "dedd5dece4f8e477b1f387e08e9b010aabf24d5d18bda7826fd2d631fab01850",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-任务闭环状态检查报告.md",
+      "size_bytes": 3289,
+      "sha256": "487f54987e396b118ddf68943a479f29fb1839dc6bf3bf7d52b68a9ecad16252",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-历史报告清单与关键结论摘要.md",
+      "size_bytes": 11651,
+      "sha256": "308434ffb704aaa27350f2e1283736f1e1f9f28d24c92c0ee7d25a04afac137e",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-四台机器运行资产全貌报告.md",
+      "size_bytes": 16510,
+      "sha256": "6f8cd722d8a7cdbc0c6b2d3d924b2bd2195ef84191c518ddb63098c2a554a288",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-四层闭环最终结论.md",
+      "size_bytes": 1720,
+      "sha256": "9220fbde6016d1d7eff1b52f661a7a1f5693caebc208c14d180394fcb746cdfe",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-强制传输状态报告.md",
+      "size_bytes": 1663,
+      "sha256": "e0b60fe46e66dc79460d50cdfc5be90614123fef077e7656151698cea8bfb1d4",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-数仓监控大屏迁移最终状态报告.md",
+      "size_bytes": 3411,
+      "sha256": "9275c7c43714b2b47064d20c6916f62487d94d388f0d94451b011ed303903d8f",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-数仓监控大屏迁移状态报告.md",
+      "size_bytes": 2075,
+      "sha256": "70e46fa8685552f0a4ca1811c2b616d2ef755dbf112cd9b9cd5297e7d65c0b4d",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-数仓重构前全量摸排基线报告.md",
+      "size_bytes": 12746,
+      "sha256": "26ffa7d4b1bd75c9df9800f82dca988a0f1ad57d58d935260ec28108000e8bcb",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-数仓重构前终极尽调清单.md",
+      "size_bytes": 22043,
+      "sha256": "a790de64f5795b193c16edbac1f6ae899d302d2887c18e30225234fea6b4191c",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-未闭环任务清单.md",
+      "size_bytes": 7465,
+      "sha256": "fef97f9d3e41fd96490c224fac92c9154cdce1d025278da0410258a67c8a46e3",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-知识沉淀精确状态.md",
+      "size_bytes": 1948,
+      "sha256": "73650b270abc92556fcd7721713378cb1614a7262245c86e3e7e254ddbb92cb7",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-系统全貌盘点报告.md",
+      "size_bytes": 12396,
+      "sha256": "097d31fe10f2ca2edc26075e1759feb12b94a8abdf2b477f86a3d957e7aec93a",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-系统当前状态快照.md",
+      "size_bytes": 2110,
+      "sha256": "86232577f7eb07663f9e222bf5daab0cfaa70ad16468b187a482f048dd1c7f20",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-系统架构与任务流转图-v2.md",
+      "size_bytes": 7151,
+      "sha256": "24e7c5579ee7f580b2eafe3df4baea617891d0f732242fc76663d94ff94863cf",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-迁移最终状态-传输受阻.md",
+      "size_bytes": 2860,
+      "sha256": "f49c77596b37cac51fd30af9720a7195b5ca5cb01c37a6f4a9ecd87fd734b7b9",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-迁移状态更新-防火墙修复.md",
+      "size_bytes": 1192,
+      "sha256": "961cb1d0ef3940e115eed3736b82fee4fa43ad2daab7d18f842be5a13152d7db",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-迁移监控状态-数据专家部署中.md",
+      "size_bytes": 1173,
+      "sha256": "21b0d8eeae0e60b0ebfdcb767e6019bb3949d032266b452ed71b16b8fa29acc1",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-闭环收口优先模式-最终收口报告.md",
+      "size_bytes": 4660,
+      "sha256": "620fd9729ef3e952888ae2cfdc10ed143f28c7f68ff172c2fa95260266cfb4f5",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-阻塞任务处理报告.md",
+      "size_bytes": 1690,
+      "sha256": "47afd0b53323506ca1e4578da186ae4063488977c1962eb7c747775eb125574a",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-阻塞任务疏通完成报告.md",
+      "size_bytes": 2441,
+      "sha256": "9a8fa9da20a373275ac96408338844145da1f1277c67eb089eedfe86b6cae254",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260510-首脑工作记忆整理.md",
+      "size_bytes": 2927,
+      "sha256": "fb0969ae9755ceee683deb83e3f373764e717a8d4f5d7f4baa88d8a26acb6cbe",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-Agent执行规范-v1.0.md",
+      "size_bytes": 2587,
+      "sha256": "a5a84cf5924026ec7e18817bb72626bbea69468406fd7015c987dfe0da220aac",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-DataGrip配置指南.md",
+      "size_bytes": 1911,
+      "sha256": "12b020b33b2ba6f0b7400ce5225722c00236b415e08f8a4d8c2367eff01be11f",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-Windows数仓数据备份清单.md",
+      "size_bytes": 4187,
+      "sha256": "a02de776d1c84d5abd6bfb1e3c0e9a572f0fc070595dbca5cbfd325ce95efbd3",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-复杂任务流转图与架构设计.md",
+      "size_bytes": 14949,
+      "sha256": "70a37d8a6e8622eabe53c440d48185b7ed59db68d38da387e79f0b93942458a2",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-知识沉淀-数仓核心数据汇总.md",
+      "size_bytes": 3686,
+      "sha256": "6e47da48122eea773680d73876dbbad499fa7d1f57b96c69898899d6fc97156c",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-第1周任务执行报告.md",
+      "size_bytes": 2861,
+      "sha256": "4d9f6a6bf6cef018bd64df99aedf57e2348138570c6e4122be56397ce6124805",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-简化执行模式-v1.0.md",
+      "size_bytes": 3115,
+      "sha256": "92699260bb0030a5e3dc9c2437f635f97c0cb2b2c7d4b388d4cdc84ada8ca33e",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-系统优化完善计划-v1.0.md",
+      "size_bytes": 8429,
+      "sha256": "6bbbbd2c89809427d18bfd5f511b2a6678face702490a0a8a252cf5dd7707b2b",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-角色分工优化执行报告.md",
+      "size_bytes": 3375,
+      "sha256": "6a967bcf7014167bc898b1c9e056e67a995671bda46ec373e1d26d4522e3546e",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-角色分工分析与优化方案.md",
+      "size_bytes": 5211,
+      "sha256": "2e00c2d870f9e57ecdf71f9f15a24fb99b171b464a4de3db27512c0de7a0bfed",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-贾维斯学习总结报告.md",
+      "size_bytes": 3695,
+      "sha256": "ae2226fe0f859cd7e89582f1c562bdd38a82c331487f286d1a7aee7923fd6051",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-贾维斯知识体系-v1.0.md",
+      "size_bytes": 6098,
+      "sha256": "8fa2ac74bb0e34170b679fce6d1762b9b85ccab8c564a2d91b56e3b97f80188a",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-贾维斯管家角色定义书-v2.0.md",
+      "size_bytes": 7083,
+      "sha256": "adb6bd8e28e95df3c221232eb46655872aef474a1be97c9dce38ba589ccead2a",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-贾维斯角色定义书-v3.0.md",
+      "size_bytes": 4331,
+      "sha256": "ff2c5d7e9ef3fd4b14c826697bff055ad19460fbf376d423329dfb247c9678f1",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-遗留问题清单-v1.0.md",
+      "size_bytes": 4450,
+      "sha256": "494560d3242558cb3484c6e0aa3fc65e7bd18d1dab33a0a58eb9560a95573b92",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-首脑角色定义书-v1.0.md",
+      "size_bytes": 6782,
+      "sha256": "d83f5463c4b3fbca0e22f4cf20e13666f64166669ddb875df1bd6829fdd92d92",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/20260511-验收标准清单-v1.0.md",
+      "size_bytes": 3970,
+      "sha256": "dc950612b680be4fdb244aeb3de2acb1c3d0cfe42b1e605098fc155beaf671da",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/AgentOS方法论吸收报告.md",
+      "size_bytes": 18793,
+      "sha256": "2e9764a5a880ee4f3ba8592e9c6cb1bc40e5b9a28d835e3e0272c7bcbd290a89",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/Runtime首脑五分钟巡检报告.md",
+      "size_bytes": 4723,
+      "sha256": "cc64f32fd31e8be0451ee5792c96e2234b8f80f41827cca62c5f9caa40d58791",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/Runtime首脑治理报告.md",
+      "size_bytes": 10971,
+      "sha256": "0a5fafe54c633db84500728b467c88d53c36baca2efbce2bf7c630ffe30f0778",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/_贾维斯分析产出/20260511-DataGrip配置指南.md",
+      "size_bytes": 1911,
+      "sha256": "12b020b33b2ba6f0b7400ce5225722c00236b415e08f8a4d8c2367eff01be11f",
+      "suffix": ".md",
+      "is_jarvis_analysis": true
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/_贾维斯分析产出/20260511-Windows数仓数据备份清单.md",
+      "size_bytes": 4187,
+      "sha256": "a02de776d1c84d5abd6bfb1e3c0e9a572f0fc070595dbca5cbfd325ce95efbd3",
+      "suffix": ".md",
+      "is_jarvis_analysis": true
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/_贾维斯分析产出/20260511-知识沉淀-数仓核心数据汇总.md",
+      "size_bytes": 3686,
+      "sha256": "6e47da48122eea773680d73876dbbad499fa7d1f57b96c69898899d6fc97156c",
+      "suffix": ".md",
+      "is_jarvis_analysis": true
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/_贾维斯分析产出/20260511-贾维斯学习总结报告.md",
+      "size_bytes": 3695,
+      "sha256": "ae2226fe0f859cd7e89582f1c562bdd38a82c331487f286d1a7aee7923fd6051",
+      "suffix": ".md",
+      "is_jarvis_analysis": true
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/_贾维斯分析产出/20260511-贾维斯百分百体检报告.md",
+      "size_bytes": 7578,
+      "sha256": "a66dcedd951a3ffab0db95d21dabc02eed18b4bcf76884737b4c53e860f6b22f",
+      "suffix": ".md",
+      "is_jarvis_analysis": true
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/_贾维斯分析产出/20260511-贾维斯知识体系-v1.0.md",
+      "size_bytes": 6098,
+      "sha256": "8fa2ac74bb0e34170b679fce6d1762b9b85ccab8c564a2d91b56e3b97f80188a",
+      "suffix": ".md",
+      "is_jarvis_analysis": true
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/_贾维斯分析产出/20260511-遗留问题清单-v1.0.md",
+      "size_bytes": 4450,
+      "sha256": "494560d3242558cb3484c6e0aa3fc65e7bd18d1dab33a0a58eb9560a95573b92",
+      "suffix": ".md",
+      "is_jarvis_analysis": true
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/_贾维斯分析产出/README.md",
+      "size_bytes": 985,
+      "sha256": "3b9ee0b9f7bffce84b653a7f1677751a429fd287ad7d820c0227c549df71f4b1",
+      "suffix": ".md",
+      "is_jarvis_analysis": true
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/reports/windows_c_drive_inventory_and_migration_plan_20260511_0755_report.md",
+      "size_bytes": 24826,
+      "sha256": "1b061dbbd8b259b8a14291e73ee1f2b91afbd2f7feb80f132eb35059e120a18f",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/runtime-governor-report.md",
+      "size_bytes": 6864,
+      "sha256": "24c14cd8e3951ce50d553c6375b4ffdfabf3d85f7920554b6e80bf97e48b6331",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/runtime-phase2-archive-quality-closure-report.md",
+      "size_bytes": 15324,
+      "sha256": "355d352461d5bff782e7055e173c246c003f1de4a61cac64d50a9e1bd403e01b",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/runtime-routing-rules-v1.md",
+      "size_bytes": 5373,
+      "sha256": "7f67c5addfe194990d7136e06d2a966c7280e6fd5931f3c6fa8d08bbe0f30567",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    },
+    {
+      "path": "raw/staging/handbrain/handbrain-20260511/files/文件清单索引.md",
+      "size_bytes": 6572,
+      "sha256": "10bb2ebbab682797fc6e90dcc282e0596cc26beb2d89f6a540a07c0364536f14",
+      "suffix": ".md",
+      "is_jarvis_analysis": false
+    }
+  ],
+  "updated_at": "2026-05-11T22:35:08",
+  "jarvis_analysis_files": 8
+}

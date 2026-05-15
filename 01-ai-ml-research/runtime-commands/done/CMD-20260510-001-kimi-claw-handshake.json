@@ -1,0 +1,33 @@
+{
+  "command_id": "CMD-20260510-001-kimi-claw-handshake",
+  "source": "C:\\root\\wiki\\runtime-commands\\pending\\CMD-20260510-001-kimi-claw-handshake.yaml",
+  "mode": "dry_run",
+  "type": "create_issue",
+  "status": "dry_run_rendered",
+  "created_issue": false,
+  "executed": false,
+  "rendered_command": "'C:\\Users\\39169\\.multica\\bin\\multica.exe' issue create --title 'Kimi Claw Windows 接入 Multica 握手验证' --description-stdin --assignee 'Kimi Claw Windows Worker' --output json",
+  "argv": [
+    "C:\\Users\\39169\\.multica\\bin\\multica.exe",
+    "issue",
+    "create",
+    "--title",
+    "Kimi Claw Windows 接入 Multica 握手验证",
+    "--description-stdin",
+    "--assignee",
+    "Kimi Claw Windows Worker",
+    "--output",
+    "json"
+  ],
+  "stdin_preview": "目标：验证 Kimi Claw 是否能作为 Windows 本地只读 Worker 接入 Multica Runtime。\n\n严格禁止：\n- 不修改生产数据库\n- 不修改 DolphinScheduler\n- 不修改 DataX\n- 不删除文件\n- 不读取或写入密钥原文\n\n输出：\n- D:\\AIWorker\\reports\\kimi_claw_multica_handshake.md\n- /root/wiki/20-resources/kimi-claw-windows-worker-handshake.md\n",
+  "labels": [
+    "runtime",
+    "windows",
+    "dry-run"
+  ],
+  "warnings": [
+    "forbidden_actions records safety boundaries and is not executed: delete_files, expose_secrets, force_push, modify_datax, modify_dolphin, modify_production_db",
+    "labels retained in audit JSON only; multica issue create help has no label flag"
+  ],
+  "timestamp": "2026-05-10 14:17:02"
+}

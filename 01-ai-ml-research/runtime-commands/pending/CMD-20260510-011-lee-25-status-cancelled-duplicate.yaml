@@ -1,0 +1,7 @@
+command_id: CMD-20260510-011-lee-25-status-cancelled-duplicate
+type: update_issue_status
+mode: dry_run
+issue: LEE-25
+target_status: cancelled
+reason: "与 LEE-26 目标重复，建议保留 LEE-26；仅渲染命令，不真实修改。"
+

@@ -1,0 +1,35 @@
+command_id: CMD-20260510-001-kimi-claw-handshake
+type: create_issue
+mode: dry_run
+workspace: default
+title: Kimi Claw Windows 接入 Multica 握手验证
+assignee: Kimi Claw Windows Worker
+labels:
+  - runtime
+  - windows
+  - dry-run
+body: |
+  目标：验证 Kimi Claw 是否能作为 Windows 本地只读 Worker 接入 Multica Runtime。
+
+  严格禁止：
+  - 不修改生产数据库
+  - 不修改 DolphinScheduler
+  - 不修改 DataX
+  - 不删除文件
+  - 不读取或写入密钥原文
+
+  输出：
+  - D:\AIWorker\reports\kimi_claw_multica_handshake.md
+  - /root/wiki/20-resources/kimi-claw-windows-worker-handshake.md
+forbidden_actions:
+  - modify_production_db
+  - modify_dolphin
+  - modify_datax
+  - delete_files
+  - force_push
+  - expose_secrets
+acceptance:
+  - issue_created_or_dryrun_rendered
+  - no_production_change
+  - result_written_to_done_or_failed
+

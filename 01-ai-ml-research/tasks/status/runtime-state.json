@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-05-10T14:07:37Z",
+  "mode": "flow_guard_readonly",
+  "overall_status": "red",
+  "gateway": {
+    "alive": false,
+    "last_seen": "2026-05-10 16:20:14 +0800",
+    "failed_count": 0,
+    "last_created_issue": "LEE-30/LEE-31 (CMD-20260510-017/018/019)"
+  },
+  "multica": {
+    "todo": 1,
+    "in_progress": 0,
+    "in_review": 0,
+    "blocked": 9,
+    "done_recent": 20
+  },
+  "flow_health": {
+    "intake_ok": true,
+    "routing_ok": true,
+    "review_ok": true,
+    "closeout_ok": true,
+    "state_observability_ok": false
+  },
+  "blockers": [
+    "gateway 超过 30 分钟无新记录（最后 2026-05-10 16:20:14，当前 22:07）",
+    "heartbeat.json review_backlog=6 与 Multica 实时 in_review=0 不一致，state_observability 受损",
+    "9 个 blocked issue 积压，含 LEE-50/49/43/42/41/38/31/29/23",
+    "review_loop_status.json 与 heartbeat.json 均停留在 2026-05-10 10:09 左右，约 12 小时未更新"
+  ],
+  "role_violations": [],
+  "duplicates": [
+    "LEE-25 与 LEE-26 标题相同（全局系统全貌盘点），历史上曾出现重复创建"
+  ],
+  "manual_decisions": [
+    "9 个 blocked issue 需要用户或主脑决策是否继续、归档或取消",
+    "gateway 停滞原因待确认：是 Windows gateway 停止运行，还是命令入口无新任务"
+  ],
+  "next_actions": [
+    "检查 Windows gateway / PocketClaw 运行状态，确认为何 5+ 小时无新 done 记录",
+    "修复 heartbeat.json / review_loop_status.json 的 stale 状态，或确认 loop 是否仍在运行",
+    "对 9 个 blocked issue 逐一评估：哪些可取消、哪些需用户决策、哪些可重试",
+    "建立 gateway 健康告警：当 done 目录超过 30 分钟无更新时自动 yellow/red"
+  ]
+}

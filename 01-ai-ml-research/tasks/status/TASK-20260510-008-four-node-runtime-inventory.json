@@ -1,0 +1,9 @@
+{
+  "task_id": "TASK-20260510-008-four-node-runtime-inventory",
+  "task_file": "TASK-20260510-008-four-node-runtime-inventory.md",
+  "multica_issue": "LEE-32",
+  "status": "done",
+  "created_at": "2026-05-10 09:19:11",
+  "agent": "\u6df1\u5ea6\u7814\u7a76\u667a\u80fd\u4f53",
+  "log_file": "/root/wiki/tasks/logs/task_inbox_watcher.log"
+}

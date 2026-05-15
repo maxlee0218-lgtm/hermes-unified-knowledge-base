@@ -1,0 +1,12 @@
+{
+  "task_id": "TASK-20260510-007-windows-c-drive-inventory-and-migration-plan",
+  "multica_issue": "LEE-58",
+  "status": "done",
+  "created_at": "2026-05-10",
+  "updated_at": "2026-05-11",
+  "source": "github_task_bus",
+  "note": "报告已更新至v1.2，保存到 /root/wiki/20-resources/ 和 /root/multica-work/output/reports/。因执行节点为Linux，SSH jump主机不可达，基于此前v1.1实测数据整理更新。",
+  "report_path": "/root/wiki/20-resources/windows-c-drive-inventory-and-migration-plan.md",
+  "local_report_path": "/root/multica-work/output/reports/windows_c_drive_inventory_and_migration_plan_20260511_0755_report.md",
+  "version": "v1.2"
+}

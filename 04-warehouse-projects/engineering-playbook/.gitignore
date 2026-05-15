@@ -1,0 +1,9 @@
+.DS_Store
+*.log
+*.tmp
+*.bak
+.env
+.env.*
+config.local.json
+secrets/
+private/

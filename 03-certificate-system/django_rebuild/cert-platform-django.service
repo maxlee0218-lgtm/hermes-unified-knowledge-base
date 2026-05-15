@@ -1,0 +1,16 @@
+[Unit]
+Description=Certificate Platform Django (Gunicorn)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/www/wwwroot/certificate-system/django_rebuild
+EnvironmentFile=/www/wwwroot/certificate-system/django_rebuild/.env
+Environment="PATH=/www/wwwroot/certificate-system/.venv/bin"
+ExecStart=/www/wwwroot/certificate-system/.venv/bin/gunicorn --config /www/wwwroot/certificate-system/django_rebuild/gunicorn.conf.py cert_platform.wsgi:application
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

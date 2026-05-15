@@ -1,0 +1,31 @@
+command_id: CMD-20260510-025-gpt-approved-create-issue-test
+type: create_issue
+mode: approved
+approval: APPROVED_CREATE_ISSUE
+approved_by: GPT
+workspace: default
+title: 【测试】GPT GitHub approved 创建 Multica Issue 验证
+assignee: Runtime首脑
+priority: low
+status: todo
+body: |
+  这是 GPT 通过 GitHub command file 发起的 approved 测试任务。
+
+  目标：
+  - 验证 GitHub -> Windows gateway -> Multica command processor -> Multica Issue 链路。
+  - 允许真实创建一个低风险 Multica 测试 Issue。
+  - Runtime首脑只做入口识别、分派/状态治理/收口，不写业务产物。
+  - 不触碰生产系统。
+
+  验收标准：
+  - gateway 生成 runtime-commands/done/CMD-20260510-025-gpt-approved-create-issue-test.json。
+  - done JSON status 应为 issue_created 或 issue_already_exists。
+  - done JSON created_issue 为 true 时，应能看到新 Multica Issue。
+  - 不出现 failed JSON。
+forbidden_actions:
+  - modify_production_db
+  - modify_dolphin
+  - modify_datax
+  - delete_files
+  - force_push
+  - expose_secrets

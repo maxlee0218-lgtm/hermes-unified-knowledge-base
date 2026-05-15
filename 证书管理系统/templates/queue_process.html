@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}处理队列 - 证书管理系统{% endblock %}
+{% block content %}
+<div style="text-align: center; padding: 50px 20px;">
+    <div class="card" style="max-width: 500px; margin: 0 auto; text-align: center; padding: 40px;">
+        <h2 style="color: #667eea; margin-bottom: 20px;">🚀 队列处理已触发</h2>
+        <div style="background: #e8f4fd; padding: 15px; border-radius: 6px; margin: 20px 0;">
+            <p><strong>待处理任务：</strong>{{ pending_count }} 条</p>
+        </div>
+        <p style="color: #666; line-height: 1.8;">请在对话框中发送 <strong>"处理队列"</strong><br>AI助手将立即开始处理这些查询任务</p>
+        <p style="font-size: 13px; color: #999;">处理完成后，结果会自动更新到系统中</p>
+        <a href="/queue" class="btn btn-primary" style="margin-top: 20px;">返回队列</a>
+    </div>
+</div>
+{% endblock %}

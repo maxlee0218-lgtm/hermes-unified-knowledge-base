@@ -1,0 +1,29 @@
+command_id: CMD-20260510-024-gpt-github-dry-run-test
+type: create_issue
+mode: dry_run
+workspace: default
+title: 【DRY-RUN】GPT GitHub 发任务链路测试
+assignee: Runtime首脑
+priority: low
+status: todo
+body: |
+  这是 GPT 通过 GitHub command file 发起的 dry-run 测试任务。
+
+  目标：
+  - 验证 GitHub -> Windows gateway -> Multica command processor 链路。
+  - 不真实创建 Multica Issue。
+  - 只生成 done JSON 和 rendered_command。
+  - 验证 Runtime首脑的 github-task-ingress skill 能识别该入口。
+
+  禁止：
+  - 不修改生产数据库、PolarDB、DolphinScheduler、DataX
+  - 不删除文件
+  - 不 force push
+  - 不打印密钥、token、连接串
+forbidden_actions:
+  - modify_production_db
+  - modify_dolphin
+  - modify_datax
+  - delete_files
+  - force_push
+  - expose_secrets

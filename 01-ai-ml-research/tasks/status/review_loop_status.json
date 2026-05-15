@@ -1,0 +1,15 @@
+{
+  "check_time": "2026-05-11 14:08:57",
+  "issues_found": 3,
+  "local_review_count": 0,
+  "multica_review_count": 0,
+  "review_backlog_total": 0,
+  "review_stuck_count": 0,
+  "running_timeout": 0,
+  "done_unarchived": 10,
+  "blocked_failed": 1,
+  "missing_status": 0,
+  "knowledge_pending": 10,
+  "github_pending": 1,
+  "requires_attention": true
+}

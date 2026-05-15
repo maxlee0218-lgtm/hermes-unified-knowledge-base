@@ -1,0 +1,38 @@
+command_id: CMD-20260510-030-corelli-readonly-access-check
+type: create_issue
+mode: approved
+approval: APPROVED_CREATE_ISSUE
+approved_by: 用户
+workspace: default
+title: "P0：Corelli 只读访问与 LEE-54 评论能力检查"
+assignee: Corelli
+priority: high
+status: todo
+body: |
+  目标：
+  检查并补齐 Corelli 在当前运行环境中的最小只读访问能力，用于读取 Multica 任务信息，并在 LEE-54 下写入一条纠偏说明。
+
+  范围：
+  - 只读读取 Issue；
+  - 只读读取 Agent；
+  - 仅允许对 LEE-54 写一条说明评论；
+  - 不允许变更 Issue 状态；
+  - 不允许关闭 Issue；
+  - 不允许处理生产系统。
+
+  输出：
+  - 20-resources/corelli-readonly-access-check-report.md
+
+  验收：
+  - 能读取 LEE-54；
+  - 能读取当前 in_review 清单；
+  - 能读取 Agent 清单；
+  - 能在 LEE-54 下写入说明评论；
+  - 状态变更仍不可用；
+  - 未处理生产系统。
+acceptance:
+  - issue_created
+  - assigned_to_corelli
+  - readonly_access_checked
+  - lee54_comment_checked
+  - report_generated

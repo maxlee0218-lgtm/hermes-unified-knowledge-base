@@ -1,0 +1,15 @@
+flowchart TD
+  AV["with_attr_value"] --> COM["ads_sc_xl_13_defined_manuf_line_name_combined"]
+  WRC["with_result_confirm"] --> COM
+  DD["dim_date_info"] --> DEF["ads_sc_xl_13_defined"]
+  XL01["ads_sc_xl_01"] --> PRODIN["生产入库量/成品入库量"]
+  PRODIN --> COM
+  SI["dwd_silicon_steel_surface_info"] --> AV
+  OUMS["ods_mes_ums_tenant"] --> TUNK["UNKNOWN tenant transform"]
+  OFUMS["ods_fair_ums_tenant"] --> TUNK
+  TUNK --> MDM["ods_mes_mdm_tenant"]
+  TUNK --> DUMS["dim_ums_tenant"]
+  MDM --> CUR["dwd_mes_wms_current_stock"]
+  DUMS --> ENTER["dwd_mes_wms_wh_enter_item"]
+  CUR --> PRODIN
+  ENTER --> XL01

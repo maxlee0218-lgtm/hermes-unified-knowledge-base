@@ -1,0 +1,11 @@
+{
+  "task_id": "LEE-19",
+  "multica_issue": "LEE-19",
+  "status": "archived",
+  "archived": true,
+  "historical_legacy": true,
+  "final_state": "done",
+  "closure_type": "pre_bus_era",
+  "note": "前总线时代任务，最小归档索引，无完整生命周期",
+  "archived_at": "2026-05-10 08:52:50"
+}

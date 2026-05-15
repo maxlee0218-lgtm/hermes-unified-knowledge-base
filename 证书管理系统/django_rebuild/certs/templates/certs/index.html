@@ -1,0 +1,25 @@
+{% extends "certs/base.html" %}
+{% block title %}首页{% endblock %}
+{% block content %}
+<div class="card"><h1 style="margin:0">证书管理平台</h1><div class="muted">员工、证书、预警、查询任务一体化后台</div></div>
+<div class="grid grid-3">
+  <div class="card"><div class="muted">员工总数</div><div style="font-size:28px;font-weight:700">{{ employee_count }}</div></div>
+  <div class="card"><div class="muted">证书总数</div><div style="font-size:28px;font-weight:700">{{ certificate_count }}</div></div>
+  <div class="card"><div class="muted">有效证书</div><div style="font-size:28px;font-weight:700">{{ valid_count }}</div></div>
+  <div class="card"><div class="muted">即将到期</div><div style="font-size:28px;font-weight:700">{{ expiring_count }}</div></div>
+  <div class="card"><div class="muted">待处理任务</div><div style="font-size:28px;font-weight:700">{{ pending_task_count }}</div></div>
+  <div class="card"><div class="muted">未读通知</div><div style="font-size:28px;font-weight:700">{{ unread_notification_count }}</div></div>
+</div>
+
+<div class="card">
+  <h3>最新证书</h3>
+  <table>
+    <tr><th>员工</th><th>证书类型</th><th>状态</th><th>到期日</th></tr>
+    {% for cert in recent_certificates %}
+      <tr><td>{{ cert.employee.name }}</td><td>{{ cert.certificate_type }}</td><td><span class="tag">{{ cert.display_status }}</span></td><td>{{ cert.expiry_date|default:"-" }}</td></tr>
+    {% empty %}
+      <tr><td colspan="4">暂无数据</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

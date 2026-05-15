@@ -1,0 +1,35 @@
+{
+  "command_id": "CMD-20260510-024-gpt-github-dry-run-test",
+  "source": "D:\\AIWorker\\llm-wiki\\runtime-commands\\pending\\CMD-20260510-024-gpt-github-dry-run-test.yaml",
+  "mode": "dry_run",
+  "type": "create_issue",
+  "status": "dry_run_rendered",
+  "created_issue": false,
+  "executed": false,
+  "rendered_command": "'C:\\Users\\39169\\.multica\\bin\\multica.exe' issue create --title '【DRY-RUN】GPT GitHub 发任务链路测试' --description-stdin --assignee 'Runtime首脑' --priority low --status todo --output json",
+  "argv": [
+    "C:\\Users\\39169\\.multica\\bin\\multica.exe",
+    "issue",
+    "create",
+    "--title",
+    "【DRY-RUN】GPT GitHub 发任务链路测试",
+    "--description-stdin",
+    "--assignee",
+    "Runtime首脑",
+    "--priority",
+    "low",
+    "--status",
+    "todo",
+    "--output",
+    "json"
+  ],
+  "stdin_preview": "这是 GPT 通过 GitHub command file 发起的 dry-run 测试任务。\n\n目标：\n- 验证 GitHub -> Windows gateway -> Multica command processor 链路。\n- 不真实创建 Multica Issue。\n- 只生成 done JSON 和 rendered_command。\n- 验证 Runtime首脑的 github-task-ingress skill 能识别该入口。\n\n禁止：\n- 不修改生产数据库、PolarDB、DolphinScheduler、DataX\n- 不删除文件\n- 不 force push\n- 不打印密钥、token、连接串\n",
+  "issue": null,
+  "target_status": "todo",
+  "comment_preview": null,
+  "labels": [],
+  "warnings": [
+    "forbidden_actions records safety boundaries and is not executed: delete_files, expose_secrets, force_push, modify_datax, modify_dolphin, modify_production_db"
+  ],
+  "timestamp": "2026-05-10 18:44:06"
+}

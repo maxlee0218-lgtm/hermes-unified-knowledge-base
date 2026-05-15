@@ -1,0 +1,29 @@
+{
+  "command_id": "CMD-20260510-017-lee-30-status-blocked",
+  "source": "/private/tmp/llm-wiki-task/runtime-commands/pending/CMD-20260510-017-lee-30-status-blocked.yaml",
+  "mode": "dry_run",
+  "type": "update_issue_status",
+  "status": "dry_run_rendered",
+  "created_issue": false,
+  "executed": false,
+  "rendered_command": "multica issue update LEE-30 --status blocked --output json",
+  "argv": [
+    "multica",
+    "issue",
+    "update",
+    "LEE-30",
+    "--status",
+    "blocked",
+    "--output",
+    "json"
+  ],
+  "stdin_preview": null,
+  "issue": "LEE-30",
+  "target_status": "blocked",
+  "comment_preview": null,
+  "labels": [],
+  "warnings": [
+    "reason retained in audit JSON only; status command has no reason flag"
+  ],
+  "timestamp": "2026-05-10 15:30:59"
+}

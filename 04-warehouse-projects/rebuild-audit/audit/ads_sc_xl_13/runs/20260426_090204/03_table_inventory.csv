@@ -1,0 +1,18 @@
+table_name,database_name,table_type,role,row_count,min_date,max_date,evidence
+ads_sc_xl_13_defined_manuf_line_name_combined_001,da_dw,BASE TABLE,终端兄弟表,124762,2025-02-22,2026-04-26,ads_sc_xl_13-day-weight-baseline
+ads_sc_xl_13_defined_manuf_line_name_combined_002,da_dw,BASE TABLE,最终产物,57662,2025-02-22,2026-04-26,ads_sc_xl_13-main-lineage
+ads_sc_xl_13_defined_manuf_line_name_combined,da_dw,BASE TABLE,主链宽表,unknown,unknown,unknown,dolphin-process-chain-18333852605952
+ads_sc_xl_13_defined_manuf_line_name,da_dw,BASE TABLE,主链聚合层,unknown,unknown,unknown,dolphin-process-chain-18333852605952
+ads_sc_xl_13_defined,da_dw,BASE TABLE,主链补零层,unknown,unknown,unknown,dolphin-process-chain-18333852605952
+ads_sc_xl_13_process1,da_dw,BASE TABLE,主链首层聚合,unknown,unknown,unknown,dolphin-process-chain-18333852605952
+dwd_mes_mm_task_group_output,da_dw,BASE TABLE,主链DWD,unknown,2014-08-06,2028-07-01,inspect_xl13_upstream
+dwd_task_prod_actual,da_dw,BASE TABLE,支撑DWD,unknown,1820-02-05,2355-05-14,inspect_xl13_upstream
+ads_sc_xl_01,da_dw,BASE TABLE,入库量支撑,2993542,2022-10-01,2026-04-25,inspect_xl13_support_tables
+dim_date_info,da_dw,BASE TABLE,日期骨架,1461,2023-01-01,2026-12-31,inspect_xl13_support_tables
+dwd_silicon_steel_surface_info,da_dw,BASE TABLE,共享支撑维,405,,,"support-anchor-tables"
+with_attr_value,da_dw,BASE TABLE,配置映射,unknown,,,"inspect_xl13_support_tables"
+with_result_confirm,da_dw,BASE TABLE,人工确认,unknown,,,"inspect_xl13_support_tables"
+ods_mes_mdm_tenant,da_dw,BASE TABLE,tenant支撑,46,2021-12-17 12:45:54,2025-06-03 16:24:05,support-anchor-tables
+dim_ums_tenant,da_dw,BASE TABLE,tenant支撑,23,2021-12-17 12:45:54,2024-07-23 15:46:31,support-anchor-tables
+ods_mes_ums_tenant,da_dw,BASE TABLE,tenant ODS,26,2021-12-17 12:45:54,2026-04-20 16:16:50,support-anchor-tables
+ods_fair_ums_tenant,da_dw,BASE TABLE,tenant ODS,19,2021-12-17 12:45:54,2025-12-23 16:23:53,support-anchor-tables

@@ -1,0 +1,7 @@
+command_id: CMD-20260510-015-lee-34-status-done
+type: update_issue_status
+mode: dry_run
+issue: LEE-34
+target_status: done
+reason: "已有报告和 Wiki 沉淀，建议用户批准后标记 done；仅渲染命令。"
+

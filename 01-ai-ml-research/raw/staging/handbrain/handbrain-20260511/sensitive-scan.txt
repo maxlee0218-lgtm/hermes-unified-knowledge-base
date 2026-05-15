@@ -1,0 +1,76 @@
+raw/staging/handbrain/handbrain-20260511/files/runtime-phase2-archive-quality-closure-report.md:7:> 禁止：修改生产、修改 Multica 框架、删除文件、输出密钥
+raw/staging/handbrain/handbrain-20260511/files/runtime-phase2-archive-quality-closure-report.md:274:| 输出密钥/token/密码 | ❌ 未触碰 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-loop-heartbeat机制报告.md:94:| heartbeat.json 不含密钥/token | ✅ 通过 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-loop-heartbeat机制报告.md:111:| heartbeat.json 不包含密钥、token、数据库信息 | ✅ |
+raw/staging/handbrain/handbrain-20260511/files/20260510-cancelled任务手动闭环报告.md:51:- 发现安全风险：config.json 明文密码
+raw/staging/handbrain/handbrain-20260511/files/20260509-2155-PolarDB连通性核验报告.md:7:- 150服务器 → SSH隧道 → 111服务器(111.229.153.11) → PolarDB(hwpolardb-m-dev2.rwlb.rds.aliyuncs.com:5018)
+raw/staging/handbrain/handbrain-20260511/files/20260509-2155-PolarDB连通性核验报告.md:37:**判定：网络层阻断（非账号/密码/客户端问题）**
+raw/staging/handbrain/handbrain-20260511/files/20260509-2155-PolarDB连通性核验报告.md:47:- ❌ 不是账号密码错误（未报Access denied）
+raw/staging/handbrain/handbrain-20260511/files/20260510-迁移最终状态-传输受阻.md:84:| 脱敏状态 | ✅ 已排除明文密码 |
+raw/staging/handbrain/handbrain-20260511/files/20260511-Agent执行规范-v1.0.md:50:| 暴露密钥 | 不得在输出中暴露密码/密钥 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-GitHub任务总线打通验证报告.md:81:| 修改密钥/token | ❌ 禁止 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:6:> 安全状态：⚠️ 发现明文密码，已脱敏处理
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:22:│   ├── config.json   # ⚠️ 包含明文密码
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:66:  - 密码：⚠️ 明文存储（已脱敏）
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:72:- 禁止将明文密码打包进迁移包
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:108:| 配置 | 明文密码 | 待确认 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:116:| 明文密码 | 🔴 高 | config.json包含明文数据库密码 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:127:2. **环境变量化**：将密码、密钥移到环境变量
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:138:- [ ] 打包项目（排除密码文件）
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:148:- 本报告已脱敏处理，不包含明文密码
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:149:- config.json中的密码已标记为⚠️，迁移时必须重新配置
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:150:- 禁止将明文密码打包进迁移包
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:161:| 配置文件 | ⚠️ 明文密码风险 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-111服务器数仓监控大屏摸底报告.md:165:**结论：111服务器数仓监控大屏升级版本存在，可迁移，但必须先处理明文密码安全问题。**
+raw/staging/handbrain/handbrain-20260511/files/20260510-LEE22-状态更新-传输通道已建立.md:38:| 脱敏状态 | ✅ 已排除明文密码 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓重构前全量摸排基线报告.md:22:| 7 | `/root/wiki/20-resources/20260510-111服务器数仓监控大屏摸底报告.md` | ✅ 已读 | 111服务器warehouse-monitor-v2项目摸底：FastAPI+Python技术栈、18080端口运行中、config.json含明文密码（已脱敏）、无Git版本控制、可迁移但需安全处理 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓重构前全量摸排基线报告.md:151:| 安全配置未全面扫描 | 明文密码泄露风险 | ⚠️ 部分处理 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓重构前终极尽调清单.md:31:| 权限基线 | Conditional Go | 只读边界清晰，但明文密码风险存在 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓重构前终极尽调清单.md:148:| **已知事实** | ① 数据库用户`hw_dev_02`仅有SELECT权限，无INDEX/ALTER/PROCESS/ANALYZE；② Windows是唯一PolarDB出口；③ 111服务器config.json含明文密码；④ 迁移包已脱敏处理；⑤ GitHub llm-wiki仓库公开 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓重构前终极尽调清单.md:151:| **风险** | 明文密码泄露；GitHub公开仓库含敏感信息 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓重构前终极尽调清单.md:263:| P2-5 | 安全配置未全面扫描 | 存在明文密码泄露风险 | 扫描配置文件+审计Git历史 | 1天 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓重构前终极尽调清单.md:336:6. 不能泄露密码、token、密钥、连接串
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓监控大屏迁移状态报告.md:16:- ⚠️ 安全风险：config.json包含明文密码（已脱敏）
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓监控大屏迁移状态报告.md:24:- ✅ contains_plaintext_secret：false
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓监控大屏迁移状态报告.md:64:- ✅ 明文密码已排除
+raw/staging/handbrain/handbrain-20260511/files/20260509-2205-PolarDB阻断报告.md:41:- ❌ 不是账号密码错误（未到达认证层）
+raw/staging/handbrain/handbrain-20260511/files/20260510-系统全貌盘点报告.md:31:- SSH (22): 端口开放，认证失败 (publickey,password)
+raw/staging/handbrain/handbrain-20260511/files/20260510-强制传输状态报告.md:64:- ✅ 迁移包已脱敏（contains_plaintext_secret=false）
+raw/staging/handbrain/handbrain-20260511/files/20260510-LEE22-Windows旁路部署状态报告.md:49:| 脱敏状态 | ✅ 已排除明文密码 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-LEE22-Windows旁路部署状态报告.md:89:- ✅ 迁移包已脱敏（contains_plaintext_secret=false）
+raw/staging/handbrain/handbrain-20260511/files/20260510-三类Agent角色摸底与协同规范.md:52:| 禁止动作 | 写生产库、改DolphinScheduler配置、删除数据、修改密钥/白名单 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-三类Agent角色摸底与协同规范.md:304:2. 涉及修改生产配置/密钥/白名单
+raw/staging/handbrain/handbrain-20260511/files/20260510-四台机器运行资产全貌报告.md:109:| `/root/.ssh/` | SSH密钥和配置 | 含jump/aliyun/winpc配置 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-四台机器运行资产全貌报告.md:117:| `/opt/warehouse-monitor-v2/backend/config.json` | 含明文密码 | ⚠️ 安全风险 |
+raw/staging/handbrain/handbrain-20260511/files/20260510-四台机器运行资产全貌报告.md:371:| **111明文密码遗留** | 🟡 中 | config.json历史含明文密码 | 已脱敏归档 |
+raw/staging/handbrain/handbrain-20260511/files/20260511-首脑角色定义书-v1.0.md:89:- ❌ 打印密码/密钥
+raw/staging/handbrain/handbrain-20260511/files/20260511-首脑角色定义书-v1.0.md:257:- 泄露密码/密钥/token
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓监控大屏迁移最终状态报告.md:16:- ⚠️ 安全风险：config.json包含明文密码（已脱敏）
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓监控大屏迁移最终状态报告.md:23:- ✅ contains_plaintext_secret：false
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓监控大屏迁移最终状态报告.md:89:- ✅ 明文密码风险已记录（后续单独整改）
+raw/staging/handbrain/handbrain-20260511/files/20260510-数仓监控大屏迁移最终状态报告.md:116:| 脱敏状态 | ✅ 已排除明文密码 |
+raw/staging/handbrain/handbrain-20260511/files/AgentOS方法论吸收报告.md:31:| 隐私保护 | ✅ 已具备 | `redact_pii: true`、`redact_secrets: true` |
+raw/staging/handbrain/handbrain-20260511/files/AgentOS方法论吸收报告.md:112:- 无成本预算控制：单任务最大 API 调用次数、最大 token 消耗
+raw/staging/handbrain/handbrain-20260511/files/AgentOS方法论吸收报告.md:117:3. 增加任务成本预算：`iteration_budget`、`token_budget`
+raw/staging/handbrain/handbrain-20260511/files/20260511-遗留问题清单-v1.0.md:57:| 23 | 多处.env含明文密码 | LEE-30 | P0 | 待接入vault |
+raw/staging/handbrain/handbrain-20260511/files/runtime-governor-report.md:160:| 输出密钥/token/密码 | ❌ 未触碰 |
+raw/staging/handbrain/handbrain-20260511/files/20260511-贾维斯学习总结报告.md:19:- **PolarDB生产库**：hwpolardb-m-dev2.rwlb.rds.aliyuncs.com:5018
+raw/staging/handbrain/handbrain-20260511/files/20260511-贾维斯学习总结报告.md:38:- **密钥管理**：SSH私钥明文落地、.env密码明文
+raw/staging/handbrain/handbrain-20260511/files/20260511-Windows数仓数据备份清单.md:50:## 三、密钥和配置（脱敏备份）
+raw/staging/handbrain/handbrain-20260511/files/20260511-Windows数仓数据备份清单.md:55:| `.env`文件 | 数据库密码 | 脱敏，只记录位置 |
+raw/staging/handbrain/handbrain-20260511/files/20260511-Windows数仓数据备份清单.md:56:| `profiles.yml` | dbt连接配置 | 脱敏密码 |
+raw/staging/handbrain/handbrain-20260511/files/20260511-Windows数仓数据备份清单.md:57:| DataX配置中的密码 | 数据源密码 | 脱敏 |
+raw/staging/handbrain/handbrain-20260511/files/20260511-Windows数仓数据备份清单.md:59:### 3.2 SSH密钥（不复制私钥）
+raw/staging/handbrain/handbrain-20260511/files/20260511-Windows数仓数据备份清单.md:152:   - 数据库连接（使用新密码）
+raw/staging/handbrain/handbrain-20260511/files/20260509-1305-LEE6-数仓架构全景/report.md:4:> 数据库：`hwpolardb-m-dev2.rwlb.rds.aliyuncs.com:5018`  
+raw/staging/handbrain/handbrain-20260511/files/20260510-clawpilot技能安装与传输报告.md:35:| OSS URL | https://pocketclaw.oss-cn-hongkong.aliyuncs.com/assistant-media/d170dcea17eea34f3632b30407dffdfb/2026/05/09/62358487-c6c1-4b3e-a9b9-f1b11387ca6c.gz |
+raw/staging/handbrain/handbrain-20260511/files/20260511-贾维斯知识体系-v1.0.md:39:- **PolarDB实例**：hwpolardb-m-dev2.rwlb.rds.aliyuncs.com:5018
+raw/staging/handbrain/handbrain-20260511/files/20260511-贾维斯知识体系-v1.0.md:124:- **密钥脱敏**：密码、token、私钥不可明文打印
+raw/staging/handbrain/handbrain-20260511/files/20260511-知识沉淀-数仓核心数据汇总.md:44:Endpoint: hwpolardb-m-dev2.rwlb.rds.aliyuncs.com:5018
+raw/staging/handbrain/handbrain-20260511/files/20260511-DataGrip配置指南.md:92:4. **密码安全**：不在公共场合展示密码
+raw/staging/handbrain/handbrain-20260511/files/20260510-历史报告清单与关键结论摘要.md:24:| 12 | `20260510-111服务器数仓监控大屏摸底报告.md` | ✅ | 111服务器监控V2技术栈摸底；发现config.json明文密码风险；完成脱敏打包 |
+raw/staging/handbrain/handbrain-20260511/files/reports/windows_c_drive_inventory_and_migration_plan_20260511_0755_report.md:26:1. **本任务严格只读**：扫描期间未移动文件、未删除文件、未修改服务、未修改计划任务、未改环境变量、未输出密钥或连接串。
+raw/staging/handbrain/handbrain-20260511/files/reports/windows_c_drive_inventory_and_migration_plan_20260511_0755_report.md:74:| `.env`、token、key、连接串 | 只记录"存在敏感配置"，不输出原文 |
+raw/staging/handbrain/handbrain-20260511/files/reports/windows_c_drive_inventory_and_migration_plan_20260511_0755_report.md:380:| `C:\Users\39169\.hermes\.env` | 存在 API key/token | 迁移前脱敏或加密 |
+raw/staging/handbrain/handbrain-20260511/files/reports/windows_c_drive_inventory_and_migration_plan_20260511_0755_report.md:385:| 各 `.env` 文件 | 可能存在数据库连接串 | 只记录"存在敏感信息"，不输出原文 |
+grep: raw/staging/handbrain/handbrain-20260511/sensitive-scan.txt: input file is also the output

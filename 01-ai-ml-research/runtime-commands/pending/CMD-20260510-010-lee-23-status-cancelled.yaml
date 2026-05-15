@@ -1,0 +1,7 @@
+command_id: CMD-20260510-010-lee-23-status-cancelled
+type: update_issue_status
+mode: dry_run
+issue: LEE-23
+target_status: cancelled
+reason: "历史测试任务，已被正式任务替代；仅渲染命令，不真实修改。"
+

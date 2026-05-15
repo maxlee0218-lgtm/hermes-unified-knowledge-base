@@ -1,0 +1,8 @@
+{% extends "certs/base.html" %}
+{% block title %}队列处理{% endblock %}
+{% block content %}
+<div class="card">
+  <h3>当前待处理任务：{{ pending_count }}</h3>
+  <form method="post" action="/api/queue/trigger">{% csrf_token %}<button type="submit">立即处理</button></form>
+</div>
+{% endblock %}

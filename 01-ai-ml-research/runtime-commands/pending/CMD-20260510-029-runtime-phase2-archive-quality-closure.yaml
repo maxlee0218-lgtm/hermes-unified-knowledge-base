@@ -1,0 +1,62 @@
+command_id: CMD-20260510-029-runtime-phase2-archive-quality-closure
+type: create_issue
+mode: approved
+approval: APPROVED_CREATE_ISSUE
+approved_by: 用户
+workspace: default
+title: "P0：Runtime 第二阶段归档与质量收口"
+assignee: Runtime首脑
+priority: high
+status: todo
+body: |
+  目标：
+  执行 Runtime 第二阶段收口：done/archive 治理、blocked 治理、知识缺口补齐清单、heartbeat 修复建议、GitHub/Multica 状态对齐建议。
+
+  背景：
+  - review backlog 已降为 0。
+  - 当前主要问题是 done 未归档、blocked 堆积、测试任务未归档、缺报告/缺 Wiki、heartbeat inbox_loop unknown、GitHub 本地状态与 Multica 状态不一致。
+
+  本任务只做 Runtime 状态治理、报告、归档摘要和只读检查，不做生产业务执行。
+
+  必须输出：
+  1. 测试任务归档候选清单：LEE-37、LEE-40、LEE-41、LEE-42、LEE-43、LEE-44、LEE-49。
+  2. blocked 任务逐项治理建议：重点 LEE-23、LEE-38、LEE-41、LEE-42、LEE-43。
+  3. done=32 的分批归档摘要：A批测试/沙箱，B批基础设施，C批数仓核心知识暂缓。
+  4. 缺失报告与 Wiki 补齐清单：重点 LEE-29、LEE-30、LEE-31、LEE-32、LEE-24。
+  5. inbox 残留和 active 残留同步建议。
+  6. heartbeat inbox_loop unknown 修复建议。
+  7. 更新 runtime-governor-report.md。
+  8. 新增 runtime-phase2-archive-quality-closure-report.md。
+
+  严格禁止：
+  - 不修改生产数据库、PolarDB、DolphinScheduler、DataX。
+  - 不重跑生产任务。
+  - 不自动补数。
+  - 不自动上线。
+  - 不修改 Multica 框架源码、daemon、配置、数据库。
+  - 不删除业务文件。
+  - 不读取或输出密钥、token、密码、连接串。
+  - 不 force push。
+
+  验收标准：
+  - 生成 runtime-phase2-archive-quality-closure-report.md。
+  - runtime-governor-report.md 已更新。
+  - 有测试任务归档候选清单。
+  - 有 blocked 任务治理建议。
+  - 有 done 分批归档摘要。
+  - 有缺报告/缺 Wiki 补齐清单。
+  - 有 heartbeat 修复建议。
+  - 未触碰生产。
+forbidden_actions:
+  - modify_production_db
+  - modify_dolphin
+  - modify_datax
+  - delete_files
+  - force_push
+  - expose_secrets
+acceptance:
+  - issue_created
+  - assigned_to_runtime_chief
+  - no_business_execution
+  - no_production_change
+  - phase2_closure_report_generated

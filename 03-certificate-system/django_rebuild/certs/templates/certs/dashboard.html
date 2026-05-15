@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>证书平台仪表盘</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; margin: 0; background: #f4f6f8; color: #1f2937; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 32px 20px 48px; }
+    h1 { margin: 0 0 8px; font-size: 32px; }
+    .muted { color: #6b7280; margin-bottom: 28px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .card { background: white; border-radius: 16px; padding: 18px; box-shadow: 0 8px 30px rgba(15,23,42,.06); }
+    .label { color: #6b7280; font-size: 14px; }
+    .value { font-size: 28px; font-weight: 700; margin-top: 8px; }
+    .cols { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 16px; }
+    .list { margin: 0; padding: 0; list-style: none; }
+    .list li { padding: 10px 0; border-bottom: 1px solid #e5e7eb; }
+    .list li:last-child { border-bottom: 0; }
+    .tag { display:inline-block; padding: 2px 8px; border-radius: 999px; background: #eef2ff; color: #3730a3; font-size: 12px; }
+    a { color: #0f766e; text-decoration: none; }
+    @media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>证书管理平台</h1>
+    <div class="muted">Django Admin 驱动的内部证书台账、预警与查询任务平台</div>
+    <div class="grid">
+      <div class="card"><div class="label">员工总数</div><div class="value">{{ employee_count }}</div></div>
+      <div class="card"><div class="label">证书总数</div><div class="value">{{ certificate_count }}</div></div>
+      <div class="card"><div class="label">有效证书</div><div class="value">{{ valid_count }}</div></div>
+      <div class="card"><div class="label">即将到期</div><div class="value">{{ expiring_count }}</div></div>
+      <div class="card"><div class="label">待处理任务</div><div class="value">{{ pending_task_count }}</div></div>
+      <div class="card"><div class="label">未读通知</div><div class="value">{{ unread_notification_count }}</div></div>
+    </div>
+    <div class="cols">
+      <div class="card">
+        <h3>最新证书</h3>
+        <ul class="list">
+          {% for cert in recent_certificates %}
+            <li>{{ cert.employee.name }} / {{ cert.certificate_type }} <span class="tag">{{ cert.display_status }}</span></li>
+          {% empty %}
+            <li>暂无数据</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="card">
+        <h3>最新任务</h3>
+        <ul class="list">
+          {% for task in recent_tasks %}
+            <li>{{ task.employee.name }} / {{ task.query_type }} <span class="tag">{{ task.status }}</span></li>
+          {% empty %}
+            <li>暂无任务</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="card">
+        <h3>通知</h3>
+        <ul class="list">
+          {% for notice in recent_notifications %}
+            <li>{{ notice.title }} <span class="tag">{{ notice.get_notification_type_display }}</span></li>
+          {% empty %}
+            <li>暂无通知</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <p class="muted" style="margin-top: 24px;">进入 <a href="/admin/">/admin/</a> 可直接管理员工、证书、任务和通知。</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% block title %}搜索员工 - 证书管理系统{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <span>🔍 搜索员工</span>
+    </div>
+    <div class="card-body" style="padding: 20px;">
+        <form class="search-form" action="/search" method="POST" id="search-form" style="flex-wrap: wrap; position: relative;">
+            <select name="type" id="search-type" onchange="toggleSearchMode()">
+                <option value="name" {% if search_type == 'name' %}selected{% endif %}>按姓名</option>
+                <option value="id_card" {% if search_type == 'id_card' %}selected{% endif %}>按身份证号</option>
+            </select>
+            <input type="text" name="keyword" id="keyword-input" placeholder="输入姓名进行模糊搜索..." 
+                   style="flex: 1; max-width: 400px;" value="{{ keyword or '' }}"
+                   oninput="fetchSuggestions()" autocomplete="off">
+            <div id="suggestions" style="position: absolute; top: 100%; left: 155px; background: white; border: 1px solid #ddd; border-radius: 4px; max-height: 250px; overflow-y: auto; display: none; z-index: 1000; width: 300px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);"></div>
+            <button type="submit" class="btn btn-primary">搜索</button>
+            <a href="/search" class="btn btn-outline">重置</a>
+        </form>
+    </div>
+</div>
+
+{% if suggestions_list %}
+<div class="card">
+    <div class="card-header">
+        <span>找到 {{ suggestions_list|length }} 个匹配的员工，请选择：</span>
+    </div>
+    <div class="card-body">
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>身份证号</th>
+                    <th>部门</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emp in suggestions_list %}
+                <tr style="cursor: pointer;" onclick="window.location='/employee/{{ emp.id }}'">
+                    <td><strong>{{ emp.name }}</strong></td>
+                    <td>{{ emp.id_card }}</td>
+                    <td>{{ emp.department or '-' }}</td>
+                    <td><a href="/employee/{{ emp.id }}" class="btn btn-outline" style="padding: 4px 8px; font-size: 12px;">查看详情</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% elif employees is not none %}
+<div class="card">
+    <div class="card-header">
+        <span>搜索结果 ({{ employees|length }} 人)</span>
+    </div>
+    <div class="card-body">
+        {% if employees %}
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>身份证号</th>
+                    <th>联系电话</th>
+                    <th>部门</th>
+                    <th>职位</th>
+                    <th>在职状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emp in employees %}
+                <tr style="cursor: pointer;" onclick="window.location='/employee/{{ emp.id }}'">
+                    <td><strong>{{ emp.name }}</strong></td>
+                    <td>{{ emp.id_card }}</td>
+                    <td>{{ emp.phone or '-' }}</td>
+                    <td>{{ emp.department or '-' }}</td>
+                    <td>{{ emp.position or '-' }}</td>
+                    <td>
+                        <span class="status {% if emp.employment_status == '在职' %}status-valid{% else %}status-warning{% endif %}">
+                            {{ emp.employment_status }}
+                        </span>
+                    </td>
+                    <td>
+                        <a href="/employee/{{ emp.id }}" class="btn btn-outline" style="padding: 4px 8px; font-size: 12px;">查看详情</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <p>未找到匹配的员工</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+<script>
+function toggleSearchMode() {
+    var searchType = document.getElementById('search-type').value;
+    var input = document.getElementById('keyword-input');
+    var suggestions = document.getElementById('suggestions');
+    
+    if (searchType === 'name') {
+        input.placeholder = '输入姓名进行模糊搜索...';
+    } else {
+        input.placeholder = '输入身份证号...';
+        suggestions.style.display = 'none';
+    }
+}
+
+function fetchSuggestions() {
+    var searchType = document.getElementById('search-type').value;
+    var keyword = document.getElementById('keyword-input').value;
+    var suggestionsDiv = document.getElementById('suggestions');
+    
+    if (searchType !== 'name' || keyword.length < 1) {
+        suggestionsDiv.style.display = 'none';
+        return;
+    }
+    
+    fetch('/api/employees/search?keyword=' + encodeURIComponent(keyword))
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0) {
+                var html = '';
+                data.forEach(function(emp) {
+                    html += '<div style="padding: 12px 15px; border-bottom: 1px solid #eee; cursor: pointer;" '
+                           + 'onmouseover="this.style.background=\'#f5f5f5\'" '
+                           + 'onmouseout="this.style.background=\'white\'" '
+                           + 'onclick="goToEmployee(' + emp.id + ')">'
+                           + '<strong>' + emp.name + '</strong> <span style="color: #888; margin-left: 10px;">' + emp.id_card + '</span>'
+                           + '</div>';
+                });
+                suggestionsDiv.innerHTML = html;
+                suggestionsDiv.style.display = 'block';
+            } else {
+                suggestionsDiv.style.display = 'none';
+            }
+        });
+}
+
+function goToEmployee(id) {
+    window.location.href = '/employee/' + id;
+}
+
+document.addEventListener('click', function(e) {
+    if (e.target.id !== 'keyword-input' && !e.target.closest('#suggestions')) {
+        document.getElementById('suggestions').style.display = 'none';
+    }
+});
+
+// 初始化
+toggleSearchMode();
+</script>
+{% endblock %}

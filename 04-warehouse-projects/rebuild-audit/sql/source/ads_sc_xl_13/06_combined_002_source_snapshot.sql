@@ -1,0 +1,37 @@
+-- ADS_SC_XL_13 legacy source snapshot
+-- Task: 21226918778112 BI_SC_XL_013_DEFINED_MANUF_LINE_NAME_COMBINED_002
+
+SELECT
+  tenant_id,
+  plate_type,
+  group_manuf_line_name,
+  manuf_line_name,
+  attr1,
+  data_date,
+  day_weight,
+  day_quantity,
+  day_average_thickness,
+  day_lower_weight,
+  day_lower_quantity,
+  day_breakdown_frequency,
+  day_planned_downtime,
+  day_unplanned_downtime,
+  day_manufacturing_finished_output_tons,
+  day_manufacturing_finished_product,
+  month_weight,
+  month_quantity,
+  month_average_thickness,
+  month_lower_weight,
+  month_lower_quantity,
+  month_breakdown_frequency,
+  month_planned_downtime,
+  month_unplanned_downtime,
+  month_manufacturing_finished_output_tons,
+  month_manufacturing_finished_product,
+  month,
+  year,
+  rk,
+  rk1,
+  remark,
+  day_output_plan
+FROM ads_sc_xl_13_defined_manuf_line_name_combined;

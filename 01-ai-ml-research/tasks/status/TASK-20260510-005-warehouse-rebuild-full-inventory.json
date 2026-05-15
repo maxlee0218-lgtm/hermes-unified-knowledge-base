@@ -1,0 +1,9 @@
+{
+  "task_id": "TASK-20260510-005-warehouse-rebuild-full-inventory",
+  "task_file": "TASK-20260510-005-warehouse-rebuild-full-inventory.md",
+  "multica_issue": "LEE-29",
+  "status": "done",
+  "created_at": "2026-05-10 09:06:54",
+  "agent": "\u6570\u4ed3\u7ba1\u5bb6",
+  "log_file": "/root/wiki/tasks/logs/task_inbox_watcher.log"
+}

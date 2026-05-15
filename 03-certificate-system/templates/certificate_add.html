@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+{% block title %}添加证书 - 证书管理系统{% endblock %}
+
+{% block content %}
+<style>
+    .form-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        margin: 20px auto;
+        max-width: 700px;
+        overflow: hidden;
+    }
+    .form-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .form-body {
+        padding: 30px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #333;
+    }
+    .form-group label .required {
+        color: #e74c3c;
+    }
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+    }
+    .form-control:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+    }
+    .form-control.error {
+        border-color: #e74c3c;
+    }
+    .form-hint {
+        font-size: 12px;
+        color: #888;
+        margin-top: 5px;
+    }
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    .form-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 30px;
+    }
+    .btn-submit {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+    }
+    .btn-reset {
+        background: #f5f7fa;
+        color: #666;
+        padding: 12px 30px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .btn-reset:hover {
+        background: #e9ecef;
+    }
+    .error-msg {
+        color: #e74c3c;
+        font-size: 12px;
+        margin-top: 5px;
+        display: none;
+    }
+    .quick-nav {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+    .quick-nav a {
+        padding: 8px 16px;
+        background: #f5f7fa;
+        border-radius: 6px;
+        color: #667eea;
+        text-decoration: none;
+        font-size: 13px;
+        transition: background 0.2s;
+    }
+    .quick-nav a:hover {
+        background: #e9ecef;
+    }
+    .no-employee-tip {
+        background: #fff3cd;
+        border: 1px solid #ffc107;
+        border-radius: 6px;
+        padding: 15px;
+        margin-bottom: 20px;
+        color: #856404;
+    }
+    .no-employee-tip a {
+        color: #667eea;
+        font-weight: 500;
+    }
+    select.form-control {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 35px;
+    }
+</style>
+
+<div class="quick-nav">
+    <a href="/employees/add">➕ 添加员工</a>
+    <a href="/certificates/add">📜 添加证书</a>
+    <a href="/employees">👥 员工列表</a>
+    <a href="/certificates">📋 证书列表</a>
+</div>
+
+{% if not employees %}
+<div class="no-employee-tip">
+    ⚠️ 系统中暂无员工记录，请先 <a href="/employees/add">添加员工</a>
+</div>
+{% endif %}
+
+<div class="form-card">
+    <div class="form-header">
+        {% if certificate %}✏️ 编辑证书{% else %}📜 添加证书{% endif %}
+    </div>
+    <div class="form-body">
+        <form id="certificateForm">
+            <div class="form-group">
+                <label><span class="required">*</span> 员工选择</label>
+                <select name="employee_id" id="employee_id" class="form-control" required>
+                    <option value="">请选择员工</option>
+                    {% for emp in employees %}
+                    <option value="{{ emp.id }}" {% if certificate and certificate.employee_id == emp.id %}selected{% endif %}>{{ emp.name }} ({{ emp.id_number }}) {% if emp.department %}- {{ emp.department }}{% endif %}</option>
+                    {% endfor %}
+                </select>
+                <div class="error-msg" id="employeeError">请选择员工</div>
+            </div>
+            
+            <div class="form-group">
+                <label><span class="required">*</span> 证书类型</label>
+                <select name="certificate_type" id="certificate_type" class="form-control" required>
+                    <option value="">请选择证书类型</option>
+                    <option value="特种作业操作证" {% if certificate and certificate.certificate_type == '特种作业操作证' %}selected{% endif %}>特种作业操作证</option>
+                    <option value="特种设备作业人员证" {% if certificate and certificate.certificate_type == '特种设备作业人员证' %}selected{% endif %}>特种设备作业人员证</option>
+                    <option value="高压电工证" {% if certificate and certificate.certificate_type == '高压电工证' %}selected{% endif %}>高压电工证</option>
+                    <option value="低压电工证" {% if certificate and certificate.certificate_type == '低压电工证' %}selected{% endif %}>低压电工证</option>
+                    <option value="焊工证" {% if certificate and certificate.certificate_type == '焊工证' %}selected{% endif %}>焊工证</option>
+                    <option value="架子工证" {% if certificate and certificate.certificate_type == '架子工证' %}selected{% endif %}>架子工证</option>
+                    <option value="起重机械作业证" {% if certificate and certificate.certificate_type == '起重机械作业证' %}selected{% endif %}>起重机械作业证</option>
+                    <option value="场（厂）内专用机动车辆作业证" {% if certificate and certificate.certificate_type == '场（厂）内专用机动车辆作业证' %}selected{% endif %}>场（厂）内专用机动车辆作业证</option>
+                    <option value="锅炉作业证" {% if certificate and certificate.certificate_type == '锅炉作业证' %}selected{% endif %}>锅炉作业证</option>
+                    <option value="压力容器作业证" {% if certificate and certificate.certificate_type == '压力容器作业证' %}selected{% endif %}>压力容器作业证</option>
+                    <option value="安全管理人员证" {% if certificate and certificate.certificate_type == '安全管理人员证' %}selected{% endif %}>安全管理人员证</option>
+                    <option value="其他" {% if certificate and certificate.certificate_type == '其他' %}selected{% endif %}>其他</option>
+                </select>
+                <div class="error-msg" id="certTypeError">请选择证书类型</div>
+            </div>
+            
+            <div class="form-group">
+                <label>作业项目</label>
+                <input type="text" name="operation_item" id="operation_item" class="form-control" placeholder="请输入作业项目（如：电工作业、焊接与热切割作业等）" value="{{ certificate.operation_item if certificate else '' }}">
+            </div>
+            
+            <div class="form-group">
+                <label>发证机关</label>
+                <input type="text" name="issuing_authority" id="issuing_authority" class="form-control" placeholder="请输入发证机关名称" value="{{ certificate.issuing_authority if certificate else '' }}">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>发证日期</label>
+                    <input type="date" name="issue_date" id="issue_date" class="form-control" value="{{ certificate.issue_date if certificate else '' }}">
+                    <div class="form-hint">证书的颁发日期</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>有效期至</label>
+                    <input type="date" name="expiry_date" id="expiry_date" class="form-control" value="{{ certificate.expiry_date if certificate else '' }}">
+                    <div class="form-hint">证书的有效期截止日期</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>复审日期</label>
+                <input type="date" name="review_date" id="review_date" class="form-control" value="{{ certificate.review_date if certificate else '' }}">
+                <div class="form-hint">证书需要进行复审的日期</div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-submit" {% if not employees %}disabled{% endif %}>{% if certificate %}提交更新{% else %}提交添加{% endif %}</button>
+                <button type="reset" class="btn-reset">重置表单</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+// 设置日期输入的默认值为今天
+document.addEventListener('DOMContentLoaded', function() {
+    var today = new Date().toISOString().split('T')[0];
+    var issueDateInput = document.getElementById('issue_date');
+    if (issueDateInput && !issueDateInput.value) {
+        issueDateInput.value = today;
+    }
+});
+
+document.getElementById('certificateForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    var employeeId = document.getElementById('employee_id').value;
+    var certificateType = document.getElementById('certificate_type').value;
+    var operationItem = document.getElementById('operation_item').value.trim();
+    var issuingAuthority = document.getElementById('issuing_authority').value.trim();
+    var issueDate = document.getElementById('issue_date').value;
+    var expiryDate = document.getElementById('expiry_date').value;
+    var reviewDate = document.getElementById('review_date').value;
+    
+    // 清除之前的错误状态
+    document.querySelectorAll('.form-control').forEach(function(el) {
+        el.classList.remove('error');
+    });
+    document.querySelectorAll('.error-msg').forEach(function(el) {
+        el.style.display = 'none';
+    });
+    
+    // 验证
+    var hasError = false;
+    
+    if (!employeeId) {
+        document.getElementById('employee_id').classList.add('error');
+        document.getElementById('employeeError').style.display = 'block';
+        hasError = true;
+    }
+    
+    if (!certificateType) {
+        document.getElementById('certificate_type').classList.add('error');
+        document.getElementById('certTypeError').style.display = 'block';
+        hasError = true;
+    }
+    
+    // 验证日期逻辑
+    if (expiryDate && issueDate && expiryDate < issueDate) {
+        alert('有效期至不能早于发证日期');
+        document.getElementById('expiry_date').classList.add('error');
+        hasError = true;
+    }
+    
+    if (reviewDate && issueDate && reviewDate < issueDate) {
+        alert('复审日期不能早于发证日期');
+        document.getElementById('review_date').classList.add('error');
+        hasError = true;
+    }
+    
+    if (hasError) return;
+    
+    // 提交数据
+    var formData = new FormData();
+    formData.append('employee_id', employeeId);
+    formData.append('certificate_type', certificateType);
+    formData.append('operation_item', operationItem);
+    formData.append('issuing_authority', issuingAuthority);
+    formData.append('issue_date', issueDate);
+    formData.append('expiry_date', expiryDate);
+    formData.append('review_date', reviewDate);
+    
+    fetch('{{ action_url|default("/api/certificates") }}', {
+        method: '{{ form_method|default("POST") }}',
+        body: formData
+    })
+    .then(function(response) { return response.json(); })
+    .then(function(data) {
+        if (data.success) {
+            alert('{% if certificate %}证书更新成功！{% else %}证书添加成功！{% endif %}');
+            {% if certificate %}
+            window.location.href = '/certificates';
+            {% else %}
+            document.getElementById('certificateForm').reset();
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('issue_date').value = today;
+            {% endif %}
+        } else {
+            alert('添加失败: ' + data.error);
+        }
+    })
+    .catch(function(error) {
+        alert('请求失败: ' + error);
+    });
+});
+</script>
+{% endblock %}

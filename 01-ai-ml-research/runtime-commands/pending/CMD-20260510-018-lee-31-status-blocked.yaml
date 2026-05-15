@@ -1,0 +1,7 @@
+command_id: CMD-20260510-018-lee-31-status-blocked
+type: update_issue_status
+mode: dry_run
+issue: LEE-31
+target_status: blocked
+reason: "等待 Windows Worker 补证，建议 waiting_for_kimi_claw_worker；仅渲染命令。"
+

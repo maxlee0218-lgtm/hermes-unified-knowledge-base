@@ -1,0 +1,44 @@
+command_id: CMD-20260510-021-runtime-closeout-github-smoke-duplicates
+type: create_issue
+mode: approved
+approval: APPROVED_CREATE_ISSUE
+approved_by: Codex
+workspace: default
+title: "[Runtime Closeout] GitHub gateway smoke duplicate cleanup"
+assignee: Runtime首脑
+priority: low
+status: todo
+body: |
+  Runtime closeout task.
+
+  Context:
+  - GitHub gateway smoke command CMD-20260510-020-gpt-github-ingress-smoke was pushed through GitHub.
+  - Windows SYSTEM gateway pulled it and created Multica smoke issues.
+  - Before the Windows output decoding/idempotency fix, retries created duplicate smoke issues:
+    - LEE-45
+    - LEE-46
+    - LEE-47
+  - Fix commit was pushed:
+    - 2227286 gateway: harden windows output decoding
+  - Gateway result was pushed back:
+    - runtime-commands/done/CMD-20260510-020-gpt-github-ingress-smoke.json
+    - status: issue_already_exists
+    - existing_issue: LEE-47
+
+  Required Runtime behavior:
+  - This is Runtime closeout work, not business execution.
+  - Do not write business artifacts.
+  - Use Review Auditor if needed.
+  - Close the smoke duplicates according to the Runtime closeout rules.
+  - Preferred outcome: mark LEE-45, LEE-46, and LEE-47 done with a short comment that they are safe GitHub gateway smoke duplicates created before idempotency hardening.
+
+  Safety:
+  - No production systems were touched.
+  - No database, DolphinScheduler, DataX, file deletion, force push, or secret output is allowed.
+forbidden_actions:
+  - modify_production_db
+  - modify_dolphin
+  - modify_datax
+  - delete_files
+  - force_push
+  - expose_secrets

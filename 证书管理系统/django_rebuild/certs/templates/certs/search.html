@@ -1,0 +1,25 @@
+{% extends "certs/base.html" %}
+{% block title %}搜索{% endblock %}
+{% block content %}
+<div class="card">
+  <form method="get">
+    <select name="type">
+      <option value="name" {% if search_type == "name" %}selected{% endif %}>姓名</option>
+      <option value="id_card" {% if search_type == "id_card" %}selected{% endif %}>身份证号</option>
+    </select>
+    <input name="keyword" value="{{ keyword }}" placeholder="输入关键字">
+    <button type="submit">搜索</button>
+  </form>
+</div>
+<div class="card">
+  {% if suggestions_list %}
+    <h3>候选员工</h3>
+    <ul>{% for emp in suggestions_list %}<li><a href="/employee/{{ emp.id }}">{{ emp.name }} / {{ emp.id_number }}</a></li>{% endfor %}</ul>
+  {% elif employees %}
+    <h3>搜索结果</h3>
+    <ul>{% for emp in employees %}<li><a href="/employee/{{ emp.id }}">{{ emp.name }} / {{ emp.id_number }}</a></li>{% endfor %}</ul>
+  {% else %}
+    <div class="muted">暂无结果</div>
+  {% endif %}
+</div>
+{% endblock %}

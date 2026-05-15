@@ -1,0 +1,8 @@
+command_id: CMD-20260510-019-lee-30-comment-waiting-report
+type: add_issue_comment
+mode: dry_run
+issue: LEE-30
+content: |
+  Dry-run suggestion only: LEE-30 is waiting for the Windows D drive report before closure.
+  No real Multica issue was modified by this command gateway spike.
+

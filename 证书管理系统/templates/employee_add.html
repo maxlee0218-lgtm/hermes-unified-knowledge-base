@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+{% block title %}添加员工 - 证书管理系统{% endblock %}
+
+{% block content %}
+<style>
+    .form-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        margin: 20px auto;
+        max-width: 600px;
+        overflow: hidden;
+    }
+    .form-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .form-body {
+        padding: 30px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #333;
+    }
+    .form-group label .required {
+        color: #e74c3c;
+    }
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+    }
+    .form-control:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+    }
+    .form-control.error {
+        border-color: #e74c3c;
+    }
+    .form-hint {
+        font-size: 12px;
+        color: #888;
+        margin-top: 5px;
+    }
+    .form-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 30px;
+    }
+    .btn-submit {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+    }
+    .btn-reset {
+        background: #f5f7fa;
+        color: #666;
+        padding: 12px 30px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .btn-reset:hover {
+        background: #e9ecef;
+    }
+    .error-msg {
+        color: #e74c3c;
+        font-size: 12px;
+        margin-top: 5px;
+        display: none;
+    }
+    .quick-nav {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+    .quick-nav a {
+        padding: 8px 16px;
+        background: #f5f7fa;
+        border-radius: 6px;
+        color: #667eea;
+        text-decoration: none;
+        font-size: 13px;
+        transition: background 0.2s;
+    }
+    .quick-nav a:hover {
+        background: #e9ecef;
+    }
+</style>
+
+<div class="quick-nav">
+    <a href="/employees/add">➕ 添加员工</a>
+    <a href="/certificates/add">📜 添加证书</a>
+    <a href="/employees">👥 员工列表</a>
+    <a href="/certificates">📋 证书列表</a>
+</div>
+
+<div class="form-card">
+    <div class="form-header">
+        ➕ 添加新员工
+    </div>
+    <div class="form-body">
+        <form id="employeeForm">
+            <div class="form-group">
+                <label><span class="required">*</span> 姓名</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="请输入员工姓名" required>
+                <div class="error-msg" id="nameError">请输入员工姓名</div>
+            </div>
+            
+            <div class="form-group">
+                <label><span class="required">*</span> 身份证号</label>
+                <input type="text" name="id_number" id="id_number" class="form-control" placeholder="请输入18位身份证号" maxlength="18" required>
+                <div class="error-msg" id="idCardError">请输入正确的18位身份证号</div>
+                <div class="form-hint">身份证号将用于证书查询验证</div>
+            </div>
+            
+            <div class="form-group">
+                <label>部门</label>
+                <input type="text" name="department" id="department" class="form-control" placeholder="请输入所属部门">
+            </div>
+            
+            <div class="form-group">
+                <label>岗位</label>
+                <input type="text" name="position" id="position" class="form-control" placeholder="请输入岗位名称">
+            </div>
+            
+            <div class="form-group">
+                <label>联系电话</label>
+                <input type="tel" name="phone" id="phone" class="form-control" placeholder="请输入联系电话（选填）">
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">提交添加</button>
+                <button type="reset" class="btn-reset">重置表单</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.getElementById('employeeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    var name = document.getElementById('name').value.trim();
+    var idCard = document.getElementById('id_number').value.trim();
+    var department = document.getElementById('department').value.trim();
+    var position = document.getElementById('position').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    
+    // 清除之前的错误状态
+    document.querySelectorAll('.form-control').forEach(function(el) {
+        el.classList.remove('error');
+    });
+    document.querySelectorAll('.error-msg').forEach(function(el) {
+        el.style.display = 'none';
+    });
+    
+    // 验证
+    var hasError = false;
+    
+    if (!name) {
+        document.getElementById('name').classList.add('error');
+        document.getElementById('nameError').style.display = 'block';
+        document.getElementById('nameError').textContent = '姓名为必填项';
+        hasError = true;
+    }
+    
+    if (!idCard) {
+        document.getElementById('id_number').classList.add('error');
+        document.getElementById('idCardError').style.display = 'block';
+        document.getElementById('idCardError').textContent = '身份证号为必填项';
+        hasError = true;
+    } else if (idCard.length !== 18) {
+        document.getElementById('id_number').classList.add('error');
+        document.getElementById('idCardError').style.display = 'block';
+        document.getElementById('idCardError').textContent = '身份证号格式不正确（应为18位）';
+        hasError = true;
+    } else {
+        // 验证身份证号格式
+        var idCardPattern = /^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d[X\d]$/;
+        if (!idCardPattern.test(idCard)) {
+            document.getElementById('id_number').classList.add('error');
+            document.getElementById('idCardError').style.display = 'block';
+            document.getElementById('idCardError').textContent = '身份证号格式不正确';
+            hasError = true;
+        }
+    }
+    
+    if (hasError) return;
+    
+    // 提交数据
+    var formData = new FormData();
+    formData.append('name', name);
+    formData.append('id_number', idCard);
+    formData.append('department', department);
+    formData.append('position', position);
+    formData.append('phone', phone);
+    
+    fetch('/api/employees', {
+        method: 'POST',
+        body: formData
+    })
+    .then(function(response) { return response.json(); })
+    .then(function(data) {
+        if (data.success) {
+            alert('员工添加成功！');
+            // 跳转到证书添加页面（如果需要快速添加证书）
+            var choice = confirm('员工添加成功！\n\n点击"确定"继续为该员工添加证书\n点击"取消"返回录入管理');
+            if (choice) {
+                window.location.href = '/certificates/add';
+            } else {
+                window.location.href = '/employees/add';
+            }
+        } else {
+            alert('添加失败: ' + data.error);
+            if (data.error.indexOf('身份证号') !== -1) {
+                document.getElementById('id_number').classList.add('error');
+                document.getElementById('idCardError').style.display = 'block';
+                document.getElementById('idCardError').textContent = data.error;
+            }
+        }
+    })
+    .catch(function(error) {
+        alert('请求失败: ' + error);
+    });
+});
+
+// 身份证号输入时自动格式化
+document.getElementById('id_number').addEventListener('input', function(e) {
+    var value = e.target.value.toUpperCase();
+    e.target.value = value;
+});
+</script>
+{% endblock %}

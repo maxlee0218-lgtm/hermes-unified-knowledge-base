@@ -1,0 +1,20 @@
+{% extends "certs/base.html" %}
+{% block title %}到期预警{% endblock %}
+{% block content %}
+<div class="card">
+  <form method="get">
+    <input name="days" value="{{ days }}" placeholder="天数">
+    <button type="submit">查看</button>
+  </form>
+</div>
+<div class="card">
+  <table>
+    <tr><th>员工</th><th>证书</th><th>到期日</th><th>剩余天数</th></tr>
+    {% for cert in certificates %}
+      <tr><td>{{ cert.employee.name }}</td><td>{{ cert.certificate_type }}</td><td>{{ cert.expiry_date }}</td><td>{{ cert.days_until_expiry }}</td></tr>
+    {% empty %}
+      <tr><td colspan="4">暂无即将到期证书</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

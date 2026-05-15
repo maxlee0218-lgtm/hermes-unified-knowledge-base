@@ -1,0 +1,36 @@
+# Obsidian / LLM Wiki Git Ignore
+
+# Runtime / Cache
+.cache/
+*.tmp
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Private data (keep out of git)
+.env
+*.key
+*.pem
+auth.json
+tokens.json
+
+# Large binaries (ignore everywhere EXCEPT raw/)
+*.mp4
+*.mp3
+*.zip
+*.tar.gz
+
+# Allow raw source files to be tracked
+!raw/**/*.pdf
+!raw/**/*.docx
+!raw/**/*.doc
+
+# Node
+node_modules/
+
+# Logs
+*.log
+logs/

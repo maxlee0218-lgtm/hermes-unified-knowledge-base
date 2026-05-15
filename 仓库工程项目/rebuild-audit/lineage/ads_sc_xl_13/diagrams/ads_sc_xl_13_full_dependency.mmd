@@ -1,0 +1,37 @@
+flowchart TD
+  HM_G["hmes_prd.mm_task_group_output"] --> ODS_G["ods_mes_mm_task_group_output"]
+  HM_A["hmes_prd.mm_task_prod_actual"] --> ODS_A["ods_mes_mm_task_prod_actual"]
+  HM_E["hmes_prd.wms_wh_enter / item"] --> ODS_E["ods_mes_wms_wh_enter / item"]
+  HM_B["hmes_prd.wms_batch_info"] --> ODS_B["ods_mes_wms_batch_info"]
+
+  ODS_G --> DWD_G["dwd_mes_mm_task_group_output"]
+  ODS_A --> DWD_A["dwd_task_prod_actual"]
+  ODS_E --> DWD_E["dwd_mes_wms_wh_enter_item"]
+  ODS_B --> DWD_E
+
+  DWD_G --> P1["ads_sc_xl_13_process1"]
+  P1 --> DEF["ads_sc_xl_13_defined"]
+  DD["dim_date_info"] --> DEF
+  DEF --> DML["ads_sc_xl_13_defined_manuf_line_name"]
+
+  DML --> COM["ads_sc_xl_13_defined_manuf_line_name_combined"]
+  AV["with_attr_value"] --> COM
+  WRC["with_result_confirm"] --> COM
+  XL01["ads_sc_xl_01"] --> COM
+  DWD_A --> COM
+
+  COM --> C001["ads_sc_xl_13_defined_manuf_line_name_combined_001"]
+  COM --> C002["ads_sc_xl_13_defined_manuf_line_name_combined_002"]
+
+  ODS_E --> XL01
+  DWD_E --> XL01
+  SI["dwd_silicon_steel_surface_info"] --> AV
+  ODS_ATTR["ods_mes_sys_attr_value"] --> SI
+
+  OUMS["ods_mes_ums_tenant"] --> TUNK["UNKNOWN tenant transform"]
+  OFUMS["ods_fair_ums_tenant"] --> TUNK
+  TUNK --> BLOCKER["BLOCKER tenant chain not fully closed"]
+  BLOCKER --> MDM["ods_mes_mdm_tenant"]
+  BLOCKER --> DUMS["dim_ums_tenant"]
+  MDM --> CUR["dwd_mes_wms_current_stock"]
+  DUMS --> DWD_E
