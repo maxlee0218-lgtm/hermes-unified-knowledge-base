@@ -1,11 +1,24 @@
 source_repo,source_path,content_type,current_purpose,target_path,migration_priority,migration_action,status,notes
-maxlee0218-lgtm/warehouse-rebuild,README.md,project_entry,old warehouse rebuild entry,02-data-warehouse/projects/warehouse-rebuild/README.md,P0,copy_and_curate,pending,Preserve original context and link back to source
-maxlee0218-lgtm/warehouse-rebuild,lineage/ads_sc_xl_13/,lineage_docs,ADS_SC_XL_13 lineage evidence,02-data-warehouse/projects/ads_sc_xl_13/lineage/,P0,copy_as_archive_then_curate,pending,Keep evidence chain intact
-maxlee0218-lgtm/warehouse-rebuild,sql/,sql_assets,warehouse rebuild SQL assets,02-data-warehouse/projects/ads_sc_xl_13/sql/,P0,copy_as_archive,pending,Do not modify SQL during migration
-maxlee0218-lgtm/warehouse-rebuild,warehouse-2.0/,project_workspace,warehouse 2.0 initial collaboration files,02-data-warehouse/projects/warehouse-2.0/,P0,merge_curated,pending,Resolve duplicate TASK_INBOX paths
-maxlee0218-lgtm/warehouse-engineering-playbook,/,engineering_playbook,warehouse engineering best practices,06-engineering-playbooks/warehouse/,P0,scan_then_curate,pending,Extract DataX Dolphin quality reconciliation docs
-maxlee0218-lgtm/llm-wiki,/,ai_agent_docs,LLM and agent knowledge,01-ai-agent-systems/,P1,scan_then_curate,pending,Only migrate relevant AI agent docs
-maxlee0218-lgtm/obnote,/,infra_notes,infrastructure and ops notes,03-infrastructure/notes/,P1,scan_then_curate,pending,Filter data engineering and ops content
-maxlee0218-lgtm/obsidian-vault,/,personal_knowledge,personal notes and templates,07-personal-knowledge/,P1,scan_then_curate,pending,Preserve useful templates
-maxlee0218-lgtm/openclaw-v2-infra,/,infra_project,OpenClaw and connector infrastructure,03-infrastructure/openclaw/,P2,scan_then_curate,pending,Keep connector learnings
-maxlee0218-lgtm/certificate-system,/,project_archive,certificate management system,05-project-archives/certificate-system/,P3,archive_index_only,pending,Weakly related to current warehouse work
+maxlee0218-lgtm/warehouse-rebuild,README.md,project_entry,数仓重构项目入口,02-data-warehouse/projects/warehouse-rebuild/README.md,P0,copy_and_curate,pending,保留原始上下文并链接回源
+maxlee0218-lgtm/warehouse-rebuild,lineage/,lineage_docs,ADS_SC_XL_13血缘证据,02-data-warehouse/projects/ads_sc_xl_13/lineage/,P0,copy_as_archive_then_curate,pending,保持证据链完整
+maxlee0218-lgtm/warehouse-rebuild,sql/,sql_assets,数仓重构SQL资产,02-data-warehouse/projects/ads_sc_xl_13/sql/,P0,copy_as_archive,pending,迁移时不修改SQL
+maxlee0218-lgtm/warehouse-rebuild,warehouse-2.0/,project_workspace,warehouse 2.0初始协作文件,02-data-warehouse/projects/warehouse-2.0/,P0,merge_curated,pending,解决重复TASK_INBOX路径
+maxlee0218-lgtm/warehouse-rebuild,assessments/,assessment_docs,评估文档,02-data-warehouse/projects/warehouse-rebuild/assessments/,P0,copy_as_archive,pending,保留评估记录
+maxlee0218-lgtm/warehouse-rebuild,audit/,audit_docs,审计文档,02-data-warehouse/projects/warehouse-rebuild/audit/,P0,copy_as_archive,pending,保留审计记录
+maxlee0218-lgtm/warehouse-rebuild,governance/,governance_docs,治理文档,02-data-warehouse/governance/,P0,copy_and_curate,pending,合并到统一治理目录
+maxlee0218-lgtm/warehouse-engineering-playbook,README.md,project_entry,工程手册入口,06-engineering-playbooks/warehouse/README.md,P0,copy_and_curate,pending,提取DataX Dolphin质量对账资料
+maxlee0218-lgtm/warehouse-engineering-playbook,docs/,engineering_docs,工程文档,06-engineering-playbooks/warehouse/docs/,P0,scan_then_curate,pending,筛选数据工程相关内容
+maxlee0218-lgtm/warehouse-engineering-playbook,sql/,sql_assets,SQL资产,06-engineering-playbooks/warehouse/sql/,P0,copy_as_archive,pending,保留SQL模板
+maxlee0218-lgtm/warehouse-engineering-playbook,templates/,templates,模板文件,06-engineering-playbooks/warehouse/templates/,P0,copy_as_archive,pending,保留工程模板
+maxlee0218-lgtm/llm-wiki,README.md,project_entry,LLM Wiki入口,01-ai-agent-systems/llm-wiki/README.md,P1,scan_then_curate,pending,只迁移相关AI agent文档
+maxlee0218-lgtm/llm-wiki,01-ai-ml-research/,research_docs,AI/ML研究,01-ai-agent-systems/research/,P1,scan_then_curate,pending,筛选Agent相关内容
+maxlee0218-lgtm/llm-wiki,04-warehouse-projects/,warehouse_docs,数仓项目资料,02-data-warehouse/projects/,P0,merge_curated,pending,与warehouse-rebuild合并
+maxlee0218-lgtm/obnote,README.md,project_entry,基础设施笔记入口,03-infrastructure/notes/README.md,P1,scan_then_curate,pending,筛选数据工程和运维内容
+maxlee0218-lgtm/obnote,entities/,entity_docs,实体文档,03-infrastructure/notes/entities/,P1,scan_then_curate,pending,保留有用的实体定义
+maxlee0218-lgtm/obsidian-vault,业务口径/,business_docs,业务口径,04-business-domains/,P1,scan_then_curate,pending,保留业务口径文档
+maxlee0218-lgtm/obsidian-vault,数据字典/,data_dictionary,数据字典,04-business-domains/data-dictionary/,P1,scan_then_curate,pending,保留数据字典
+maxlee0218-lgtm/obsidian-vault,排查案例/,troubleshooting,排查案例,06-engineering-playbooks/troubleshooting/,P1,scan_then_curate,pending,保留排查经验
+maxlee0218-lgtm/openclaw-v2-infra,README.md,project_entry,OpenClaw基础设施入口,03-infrastructure/openclaw/README.md,P2,scan_then_curate,pending,保留连接器经验
+maxlee0218-lgtm/openclaw-v2-infra,docs/,infra_docs,基础设施文档,03-infrastructure/openclaw/docs/,P2,scan_then_curate,pending,保留基础设施经验
+maxlee0218-lgtm/certificate-system,README.md,project_entry,证书系统入口,05-project-archives/certificate-system/README.md,P3,archive_index_only,pending,如仍需保留代码则不要删除仓库
+maxlee0218-lgtm/certificate-system,docs/,project_docs,项目文档,05-project-archives/certificate-system/docs/,P3,archive_index_only,pending,迁移文档后确认是否保留代码
