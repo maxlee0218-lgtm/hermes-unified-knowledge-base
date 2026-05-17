@@ -1,0 +1,8 @@
+source_repo,source_path,target_path,item_type,migration_status,skip_reason,source_commit,notes
+warehouse-rebuild,/,05-archives/source-repos/warehouse-rebuild/,directory,migrated,,see_receipt,"186 files migrated, 1 skipped, 187 total"
+warehouse-engineering-playbook,/,05-archives/source-repos/warehouse-engineering-playbook/,directory,migrated,,see_receipt,"21 files migrated, 0 skipped, 21 total"
+llm-wiki,/,05-archives/source-repos/llm-wiki/,directory,migrated,,see_receipt,"3240 files migrated, 8 skipped, 3248 total"
+obnote,/,05-archives/source-repos/obnote/,directory,migrated,,see_receipt,"9 files migrated, 0 skipped, 9 total"
+obsidian-vault,/,05-archives/source-repos/obsidian-vault/,directory,migrated,,see_receipt,"21 files migrated, 0 skipped, 21 total"
+openclaw-v2-infra,/,05-archives/source-repos/openclaw-v2-infra/,directory,migrated,,see_receipt,"2 files migrated, 0 skipped, 2 total"
+certificate-system,/,05-archives/source-repos/certificate-system/,directory,migrated,,see_receipt,"582 files migrated, 1 skipped, 583 total"
