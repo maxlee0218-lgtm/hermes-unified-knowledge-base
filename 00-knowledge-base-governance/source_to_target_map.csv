@@ -1,0 +1,11 @@
+source_repo,source_path,content_type,current_purpose,target_path,migration_priority,migration_action,status,notes
+maxlee0218-lgtm/warehouse-rebuild,README.md,project_entry,old warehouse rebuild entry,02-data-warehouse/projects/warehouse-rebuild/README.md,P0,copy_and_curate,pending,Preserve original context and link back to source
+maxlee0218-lgtm/warehouse-rebuild,lineage/ads_sc_xl_13/,lineage_docs,ADS_SC_XL_13 lineage evidence,02-data-warehouse/projects/ads_sc_xl_13/lineage/,P0,copy_as_archive_then_curate,pending,Keep evidence chain intact
+maxlee0218-lgtm/warehouse-rebuild,sql/,sql_assets,warehouse rebuild SQL assets,02-data-warehouse/projects/ads_sc_xl_13/sql/,P0,copy_as_archive,pending,Do not modify SQL during migration
+maxlee0218-lgtm/warehouse-rebuild,warehouse-2.0/,project_workspace,warehouse 2.0 initial collaboration files,02-data-warehouse/projects/warehouse-2.0/,P0,merge_curated,pending,Resolve duplicate TASK_INBOX paths
+maxlee0218-lgtm/warehouse-engineering-playbook,/,engineering_playbook,warehouse engineering best practices,06-engineering-playbooks/warehouse/,P0,scan_then_curate,pending,Extract DataX Dolphin quality reconciliation docs
+maxlee0218-lgtm/llm-wiki,/,ai_agent_docs,LLM and agent knowledge,01-ai-agent-systems/,P1,scan_then_curate,pending,Only migrate relevant AI agent docs
+maxlee0218-lgtm/obnote,/,infra_notes,infrastructure and ops notes,03-infrastructure/notes/,P1,scan_then_curate,pending,Filter data engineering and ops content
+maxlee0218-lgtm/obsidian-vault,/,personal_knowledge,personal notes and templates,07-personal-knowledge/,P1,scan_then_curate,pending,Preserve useful templates
+maxlee0218-lgtm/openclaw-v2-infra,/,infra_project,OpenClaw and connector infrastructure,03-infrastructure/openclaw/,P2,scan_then_curate,pending,Keep connector learnings
+maxlee0218-lgtm/certificate-system,/,project_archive,certificate management system,05-project-archives/certificate-system/,P3,archive_index_only,pending,Weakly related to current warehouse work
